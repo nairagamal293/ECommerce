@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store - Home</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 0;
+            background-color: white !important;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            color: var(--dark-color) !important;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 5rem 0;
+            border-radius: 0 0 1.5rem 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-title {
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-hero {
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            background-color: white;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            object-fit: contain;
+            padding: 1.5rem;
+            background-color: #f9fafb;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .discounted-price {
+            color: #dc3545;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn-add-to-cart {
+            background-color: var(--primary-color);
+            border: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-add-to-cart:hover {
+            background-color: #0b5ed7;
+        }
+        
+        .btn-add-to-wishlist {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-add-to-wishlist:hover {
+            background-color: #f8f9fa;
+            border-color: #ced4da;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-heading {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-link:hover {
+            color: white !important;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ShopSphere</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <span class="d-inline d-lg-none">Cart</span>
+                            <span class="d-none d-lg-inline"><i class="bi bi-cart3"></i> Cart</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wishlist.html">
+                            <span class="d-inline d-lg-none">Wishlist</span>
+                            <span class="d-none d-lg-inline"><i class="bi bi-heart"></i> Wishlist</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">
+                            <span class="d-inline d-lg-none">Orders</span>
+                            <span class="d-none d-lg-inline"><i class="bi bi-box-seam"></i> Orders</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item" id="auth-links">
+                        <a class="nav-link" href="login.html"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                        <a class="nav-link" href="register.html"><i class="bi bi-person-plus"></i> Register</a>
+                    </li>
+                    <li class="nav-item d-none" id="profile-link">
+                        <a class="nav-link" href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+                    </li>
+                    <li class="nav-item d-none" id="logout-link">
+                        <a class="nav-link" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Discover Amazing Products</h1>
+                    <p class="hero-subtitle">Shop the latest trends at unbeatable prices with fast delivery and excellent customer service.</p>
+                    <a href="product.html" class="btn btn-light btn-hero">Shop Now <i class="bi bi-arrow-right ms-2"></i></a>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="images/Desktop Wallpaper _ Desktop Background _ Porsche 911 _ Sports Car _ Racing _ Gaming _ Computer Wallpaper _ Digital Download _ 1080p 1440p 4k - Etsy.jpeg" alt="Hero Image" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container my-5" id="main-content">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold mb-4">Featured Products</h2>
+            </div>
+        </div>
+        <!-- Products will be loaded here by products.js -->
+        <div class="row g-4" id="products-container">
+            <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Modern Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="footer-heading">ShopSphere</h5>
+                    <p class="footer-text">Your one-stop shop for all your needs. Quality products, fast delivery, and excellent customer service.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="cart.html" class="footer-link">Cart</a></li>
+                        <li><a href="wishlist.html" class="footer-link">Wishlist</a></li>
+                        <li><a href="orders.html" class="footer-link">Orders</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Account</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="login.html" class="footer-link">Login</a></li>
+                        <li><a href="register.html" class="footer-link">Register</a></li>
+                        <li><a href="profile.html" class="footer-link">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Contact Us</h5>
+                    <p class="footer-text"><i class="bi bi-envelope me-2"></i> info@shopsphere.com</p>
+                    <p class="footer-text"><i class="bi bi-telephone me-2"></i> +1 (555) 123-4567</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="footer-text mb-0">© 2023 ShopSphere. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

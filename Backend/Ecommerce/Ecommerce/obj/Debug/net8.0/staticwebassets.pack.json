@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\4b469ad1-0c55-498c-8aa6-bee786857314.jpeg",
+      "PackagePath": "staticwebassets\\products\\4b469ad1-0c55-498c-8aa6-bee786857314.jpeg"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png",
+      "PackagePath": "staticwebassets\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8b6eb480-1070-4108-8db0-c7dc013741e9.jpeg",
+      "PackagePath": "staticwebassets\\products\\8b6eb480-1070-4108-8db0-c7dc013741e9.jpeg"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\a155d0df-5c47-4c31-a4ee-9508753bd322.png",
+      "PackagePath": "staticwebassets\\products\\a155d0df-5c47-4c31-a4ee-9508753bd322.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\a1e6ff0e-83e5-487a-9a81-70168d885052.png",
+      "PackagePath": "staticwebassets\\products\\a1e6ff0e-83e5-487a-9a81-70168d885052.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\ae511fb8-7e12-4543-8393-8c41f3e92513.png",
+      "PackagePath": "staticwebassets\\products\\ae511fb8-7e12-4543-8393-8c41f3e92513.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\b9d220cf-e050-40b9-a627-e04cff2b5af7.png",
+      "PackagePath": "staticwebassets\\products\\b9d220cf-e050-40b9-a627-e04cff2b5af7.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png",
+      "PackagePath": "staticwebassets\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ecommerce.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ecommerce.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Ecommerce.props",
+      "PackagePath": "build\\Ecommerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Ecommerce.props",
+      "PackagePath": "buildMultiTargeting\\Ecommerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Ecommerce.props",
+      "PackagePath": "buildTransitive\\Ecommerce.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
