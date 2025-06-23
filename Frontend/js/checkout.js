@@ -128,3 +128,5 @@ function formatPaymentMethod(method) {
         default: return method;
     }
 }
+
+

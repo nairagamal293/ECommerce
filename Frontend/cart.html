@@ -1,80 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Store - Cart</title>
-    <!-- Bootstrap 5 CSS -->
+    <title>أوتو شاين - سلة التسوق</title>
+    <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts - Tajawal for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary: #8e0202;
+            --primary-dark: #8e0202;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+        
+        body {
+             font-family: 'Cairo', sans-serif;
+            background-color: var(--light);
+            color: #06090d;
+            overflow-x: hidden;
+            text-align: right;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            color: #06090d !important;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary) !important;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 6rem 0 4rem;
+        }
+        
+        /* Cart Styles */
+        .cart-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cart-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .cart-item-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            background-color: #f8fafc;
+            padding: 0.5rem;
+        }
+        
+        .quantity-control {
+            width: 120px;
+        }
+        
+        .quantity-control .btn {
+            width: 36px;
+            background-color: #f1f5f9;
+            border-color: #e2e8f0;
+        }
+        
+        .quantity-control .form-control {
+            text-align: center;
+            border-left: none;
+            border-right: none;
+        }
+        
+        .summary-card {
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+        
+        .summary-card .card-header {
+            background-color: white;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .empty-cart {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .empty-cart-icon {
+            font-size: 5rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-outline-danger:hover {
+            color: white;
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            vertical-align: text-bottom;
+            border: 0.25em solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spinner-border 0.75s linear infinite;
+            color: var(--primary);
+        }
+        
+        @keyframes spinner-border {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #06090d;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #334155;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-link {
+            display: block;
+            color: #94a3b8 !important;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: white !important;
+            transform: translateX(-5px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .cart-item-img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .quantity-control {
+                width: 100px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">E-Commerce</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="cart.html">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wishlist.html">Wishlist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="orders.html">Orders</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item" id="auth-links">
-                        <a class="nav-link" href="login.html">Login</a>
-                        <a class="nav-link" href="register.html">Register</a>
-                    </li>
-                    <li class="nav-item d-none" id="profile-link">
-                        <a class="nav-link" href="profile.html">Profile</a>
-                    </li>
-                    <li class="nav-item d-none" id="logout-link">
-                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
-                    </li>
-                </ul>
-            </div>
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-car"></i> أوتو شاين
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product.html">
+                        <i class="fas fa-box-open"></i> المنتجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="cart.html">
+                        <i class="fas fa-shopping-cart"></i> عربة التسوق
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="wishlist.html">
+                        <i class="fas fa-heart"></i> المفضلة
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders.html">
+                        <i class="fas fa-box-open"></i> الطلبات
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" id="auth-links">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a>
+                    <a class="nav-link" href="register.html">
+                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="profile-link">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> الملف الشخصي
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="logout-link">
+                    <a class="nav-link" href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
-    <main class="container my-5" id="main-content">
+    <main class="container" id="main-content">
         <!-- Cart will be loaded here by cart.js -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>Your one-stop shop for all your needs.</p>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-car"></i> أوتو شاين
+                    </a>
+                    <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">تسوق</h3>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white">Home</a></li>
-                        <li><a href="cart.html" class="text-white">Cart</a></li>
-                        <li><a href="wishlist.html" class="text-white">Wishlist</a></li>
+                        <li><a href="#" class="footer-link">غسيل السيارات</a></li>
+                        <li><a href="#" class="footer-link">الشمع والتلميع</a></li>
+                        <li><a href="#" class="footer-link">العناية الداخلية</a></li>
+                        <li><a href="#" class="footer-link">ملحقات</a></li>
+                        <li><a href="#" class="footer-link">وصل حديثاً</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5>Contact</h5>
-                    <p>Email: info@ecommerce.com</p>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">الدعم</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">اتصل بنا</a></li>
+                        <li><a href="#" class="footer-link">الأسئلة الشائعة</a></li>
+                        <li><a href="#" class="footer-link">الشحن</a></li>
+                        <li><a href="#" class="footer-link">المرتجعات</a></li>
+                        <li><a href="#" class="footer-link">الإرشادات</a></li>
+                    </ul>
                 </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-heading">النشرة البريدية</h3>
+                    <p class="footer-text">اشترك للحصول على تحديثات حول المنتجات الجديدة والعروض الخاصة.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني" required>
+                            <button class="btn btn-primary" type="submit">اشتراك</button>
+                        </div>
+                    </form>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p class="footer-text"><i class="fas fa-envelope me-2"></i> info@autoshine.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2023 أوتو شاين. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -85,5 +403,235 @@
     <script src="js/auth.js"></script>
     <script src="js/api.js"></script>
     <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            auth.checkAuthState();
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Show loading state
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="text-center py-5">
+                    <div class="loading-spinner"></div>
+                    <p class="mt-3">جاري تحميل سلة التسوق...</p>
+                </div>
+            `;
+            
+            try {
+                // Fetch cart
+                const cartData = await cart.getCart();
+                
+                // Render cart
+                renderCart(cartData);
+            } catch (error) {
+                auth.showToast(error.message, 'danger');
+                mainContent.innerHTML = `
+                    <div class="alert alert-danger">
+                        ${error.message}
+                    </div>
+                `;
+            }
+        });
+        
+        function renderCart(cart) {
+            const mainContent = document.getElementById('main-content');
+            
+            if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
+                mainContent.innerHTML = `
+                    <div class="empty-cart animate-up">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h2 class="mb-3">سلة التسوق فارغة</h2>
+                        <p class="mb-4">يبدو أنك لم تقم بإضافة أي عناصر إلى سلة التسوق الخاصة بك بعد.</p>
+                        <a href="index.html" class="btn btn-primary btn-lg">مواصلة التسوق</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div class="row animate-up">
+                    <div class="col-lg-8">
+                        <div class="cart-header">
+                            <h2><i class="fas fa-shopping-cart me-2"></i>سلة التسوق الخاصة بك</h2>
+                            <p class="text-muted">لديك ${cart.cartItems.length} عنصر(عناصر) في سلة التسوق</p>
+                        </div>
+                        
+                        <div class="card summary-card mb-4">
+                            <div class="card-body">
+            `;
+            
+            cart.cartItems.forEach(item => {
+                const price = item.discountedPrice || item.price;
+                const total = price * item.quantity;
+                
+                html += `
+                    <div class="cart-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <img src="${item.productImageUrl || 'https://via.placeholder.com/300'}" 
+                                     class="cart-item-img img-fluid" 
+                                     alt="${item.productName}">
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="mb-1">${item.productName}</h5>
+                                <small class="text-muted">${item.productId}</small>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group quantity-control">
+                                    <button class="btn btn-outline-secondary minus-btn" 
+                                            type="button" 
+                                            data-item-id="${item.id}">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" 
+                                           class="form-control text-center quantity-input" 
+                                           value="${item.quantity}" 
+                                           min="1"
+                                           data-item-id="${item.id}">
+                                    <button class="btn btn-outline-secondary plus-btn" 
+                                            type="button" 
+                                            data-item-id="${item.id}">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-md-end">
+                                <h5 class="mb-0">$${total.toFixed(2)}</h5>
+                                <small class="text-muted">$${price.toFixed(2)} لكل قطعة</small>
+                            </div>
+                            <div class="col-md-1 text-end">
+                                <button class="btn btn-sm btn-outline-danger remove-item-btn" 
+                                        data-item-id="${item.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-5">
+                            <a href="product.html" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-2"></i>مواصلة التسوق
+                            </a>
+                            <button class="btn btn-outline-danger" id="clear-cart-btn">
+                                <i class="fas fa-trash me-2"></i>إفراغ السلة
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card summary-card sticky-top" style="top: 100px;">
+                            <div class="card-header">
+                                <h4 class="mb-0">ملخص الطلب</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>المجموع الفرعي (${cart.cartItems.length} عناصر)</span>
+                                    <span>$${cart.totalAmount.toFixed(2)}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>الشحن</span>
+                                    <span>مجاني</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>الضريبة</span>
+                                    <span>$0.00</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-4 fw-bold fs-5">
+                                    <span>الإجمالي</span>
+                                    <span>$${cart.totalAmount.toFixed(2)}</span>
+                                </div>
+                                <button class="btn btn-primary btn-lg w-100" id="checkout-btn">
+                                    <i class="fas fa-credit-card me-2"></i>إتمام الشراء
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            mainContent.innerHTML = html;
+            
+            // Add event listeners
+            document.querySelectorAll('.minus-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const itemId = e.target.closest('button').getAttribute('data-item-id');
+                    const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
+                    let value = parseInt(input.value);
+                    if (value > 1) {
+                        input.value = value - 1;
+                        await cart.updateCartItem(itemId, input.value);
+                        location.reload(); // Refresh to update totals
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.plus-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const itemId = e.target.closest('button').getAttribute('data-item-id');
+                    const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                    await cart.updateCartItem(itemId, input.value);
+                    location.reload(); // Refresh to update totals
+                });
+            });
+            
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', async (e) => {
+                    const itemId = e.target.getAttribute('data-item-id');
+                    let value = parseInt(e.target.value);
+                    if (value < 1) value = 1;
+                    e.target.value = value;
+                    await cart.updateCartItem(itemId, value);
+                    location.reload(); // Refresh to update totals
+                });
+            });
+            
+            document.querySelectorAll('.remove-item-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const itemId = e.target.getAttribute('data-item-id');
+                    try {
+                        await cart.removeFromCart(itemId);
+                        auth.showToast('تمت إزالة العنصر من السلة', 'success');
+                        location.reload();
+                    } catch (error) {
+                        auth.showToast(error.message, 'danger');
+                    }
+                });
+            });
+            
+            document.getElementById('clear-cart-btn').addEventListener('click', async () => {
+                try {
+                    await cart.clearCart();
+                    auth.showToast('تم إفراغ السلة', 'success');
+                    location.reload();
+                } catch (error) {
+                    auth.showToast(error.message, 'danger');
+                }
+            });
+            
+            document.getElementById('checkout-btn').addEventListener('click', () => {
+                window.location.href = 'checkout.html';
+            });
+        }
+    </script>
 </body>
 </html>

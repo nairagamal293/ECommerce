@@ -139,7 +139,6 @@ D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticweba
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Ecommerce.props
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Ecommerce.props
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\Ecommerce.csproj.Up2Date
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\Ecommerce.dll
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\refint\Ecommerce.dll
@@ -147,3 +146,5 @@ D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\Ecommerce.
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\Ecommerce.genruntimeconfig.cache
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\ref\Ecommerce.dll
 D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\bin\Debug\net8.0\Ecommerce.staticwebassets.runtime.json
+D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\Ecommerce.sourcelink.json
+D:\Naira\Full E commerce\Backend\Ecommerce\Ecommerce\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

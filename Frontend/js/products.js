@@ -1,24 +1,24 @@
 document.addEventListener('DOMContentLoaded', async () => {
     auth.checkAuthState();
     
+    // Show loading state
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = `
+        <div class="text-center py-5">
+            <div class="loading-spinner text-primary"></div>
+            <p class="mt-2">Loading products...</p>
+        </div>
+    `;
+    
     try {
-        // Show loading state
-        const mainContent = document.getElementById('main-content');
-        mainContent.innerHTML = `
-            <div class="text-center py-5">
-                <div class="loading-spinner text-primary"></div>
-                <p class="mt-2">Loading products...</p>
-            </div>
-        `;
-        
-        // Fetch products
+        // Fetch all products
         const products = await api.get('/Products');
         
         // Render products
         renderProducts(products);
     } catch (error) {
         auth.showToast(error.message, 'danger');
-        document.getElementById('main-content').innerHTML = `
+        mainContent.innerHTML = `
             <div class="alert alert-danger">
                 Failed to load products. Please try again later.
             </div>
@@ -38,77 +38,68 @@ function renderProducts(products) {
         return;
     }
     
-    // Group products by category
-    const productsByCategory = {};
-    products.forEach(product => {
-        if (!productsByCategory[product.categoryName]) {
-            productsByCategory[product.categoryName] = [];
-        }
-        productsByCategory[product.categoryName].push(product);
-    });
+    mainContent.innerHTML = `
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="section-title">All Products</h2>
+            </div>
+        </div>
+        <div class="row g-4" id="products-grid">
+            <!-- Products will be inserted here -->
+        </div>
+    `;
     
-    let html = '<div class="row">';
+    const productsGrid = document.getElementById('products-grid');
     
-    // Create a section for each category
-    for (const [category, categoryProducts] of Object.entries(productsByCategory)) {
-        html += `
-            <div class="col-12 mb-4">
-                <h2 class="mb-3">${category}</h2>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        `;
+    products.forEach((product, index) => {
+        const priceHtml = product.discountedPrice 
+            ? `<span class="original-price">$${product.price.toFixed(2)}</span>
+               <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
+            : `$${product.price.toFixed(2)}`;
         
-        // Add products for this category
-        categoryProducts.forEach(product => {
-            const priceHtml = product.discountedPrice 
-                ? `<span class="original-price">$${product.price.toFixed(2)}</span> 
-                   <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
-                : `<span>$${product.price.toFixed(2)}</span>`;
-            
-            html += `
-                <div class="col">
-                    <div class="card product-card h-100">
-                        <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
-                             class="card-img-top product-img" 
-                             alt="${product.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text text-muted">${product.description || 'No description available'}</p>
-                            <div class="mb-2">${priceHtml}</div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-secondary">${product.categoryName}</span>
-                                <span class="text-success">${product.quantityInStock} in stock</span>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="product.html?id=${product.id}" class="btn btn-primary btn-sm w-100 mb-2">
-                                View Details
-                            </a>
-                            <button class="btn btn-outline-success btn-sm btn-add-to-cart w-100" 
-                                    data-product-id="${product.id}">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+        const productCard = document.createElement('div');
+        productCard.className = `col-md-6 col-lg-4 col-xl-3 animate-up`;
+        productCard.style.animationDelay = `${0.1 * index}s`;
+        productCard.innerHTML = `
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
+                         alt="${product.name}" 
+                         class="product-img">
+                    ${product.discountedPrice ? '<span class="product-badge">Sale</span>' : ''}
                 </div>
-            `;
-        });
-        
-        html += `
+                <div class="product-body">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-category">${product.categoryName}</p>
+                    <div class="product-price">${priceHtml}</div>
+                    <div class="product-actions">
+                        <button class="btn btn-add-to-cart" data-product-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-add-to-wishlist" data-product-id="${product.id}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
-    }
-    
-    html += '</div>';
-    mainContent.innerHTML = html;
-    
-    // Add event listeners to Add to Cart buttons
-    document.querySelectorAll('.btn-add-to-cart').forEach(button => {
-        button.addEventListener('click', async (e) => {
-            const productId = e.target.getAttribute('data-product-id');
+        
+        productsGrid.appendChild(productCard);
+        
+        // Add event listeners
+        productCard.querySelector('.btn-add-to-cart').addEventListener('click', async () => {
             try {
-                await cart.addToCart(productId, 1);
+                await cart.addToCart(product.id, 1);
                 auth.showToast('Product added to cart', 'success');
+            } catch (error) {
+                auth.showToast(error.message, 'danger');
+            }
+        });
+        
+        productCard.querySelector('.btn-add-to-wishlist').addEventListener('click', async () => {
+            try {
+                await wishlist.addToWishlist(product.id);
+                auth.showToast('Product added to wishlist', 'success');
             } catch (error) {
                 auth.showToast(error.message, 'danger');
             }

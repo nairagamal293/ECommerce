@@ -1,81 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Store - Home</title>
-    <!-- Bootstrap 5 CSS -->
+    <title>أوتو شاين - منتجات العناية بالسيارات</title>
+    <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Tajawal for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #6c757d;
-            --dark-color: #212529;
-            --light-color: #f8f9fa;
-            --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --primary: #8e0202;
+            --primary-dark: #8e0202;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        
+  font-family: 'Cairo', sans-serif;
+
+
+            background-color: var(--light);
+            color: #06090d;
+            overflow-x: hidden;
+            text-align: right;
         }
         
+        /* Navigation */
         .navbar {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 0.75rem 0;
             background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .navbar-brand {
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--dark-color) !important;
+            font-size: 1.75rem;
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-left: 10px;
+            margin-right: 0;
         }
         
         .nav-link {
             font-weight: 500;
             padding: 0.5rem 1rem !important;
-            color: var(--dark-color) !important;
+            color: #06090d !important;
             transition: all 0.2s ease;
+            position: relative;
         }
         
         .nav-link:hover, .nav-link.active {
-            color: var(--primary-color) !important;
+            color: var(--primary) !important;
         }
         
-        .hero-section {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            color: white;
-            padding: 5rem 0;
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            text-align: right;
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary);
+            color: white !important;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
             border-radius: 0 0 1.5rem 1.5rem;
-            margin-bottom: 3rem;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding: 0 2rem;
+            max-width: 600px;
         }
         
         .hero-title {
-            font-weight: 800;
-            font-size: 3rem;
+            font-weight: 700;
+            font-size: 3.5rem;
             line-height: 1.2;
             margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
-            opacity: 0.9;
             margin-bottom: 2rem;
+            opacity: 0.9;
         }
         
         .btn-hero {
-            padding: 0.75rem 1.75rem;
+            padding: 0.75rem 2rem;
             font-weight: 600;
             border-radius: 0.5rem;
             font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 2rem;
+            right: 50%;
+            transform: translateX(50%);
+            display: flex;
+            z-index: 2;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Featured Products */
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
         }
         
         .product-card {
@@ -83,51 +240,94 @@
             border-radius: 0.75rem;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             height: 100%;
             background-color: white;
+            margin-bottom: 1.5rem;
         }
         
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8fafc;
         }
         
         .product-img {
-            height: 200px;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             padding: 1.5rem;
-            background-color: #f9fafb;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .product-body {
+            padding: 1.5rem;
         }
         
         .product-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--dark-color);
+            color: #06090d;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
         }
         
         .product-price {
             font-weight: 700;
-            color: var(--dark-color);
+            color: #06090d;
+            margin-bottom: 1rem;
         }
         
         .discounted-price {
-            color: #dc3545;
+            color: var(--danger);
         }
         
         .original-price {
             text-decoration: line-through;
-            color: var(--secondary-color);
+            color: var(--secondary);
             font-size: 0.9rem;
+            margin-left: 0.5rem;
         }
         
-        .rating {
-            color: #ffc107;
-            margin-bottom: 0.5rem;
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
         }
         
         .btn-add-to-cart {
-            background-color: var(--primary-color);
+            flex: 1;
+            background-color: var(--primary);
+            color: white;
             border: none;
             font-weight: 500;
             padding: 0.5rem;
@@ -136,28 +336,214 @@
         }
         
         .btn-add-to-cart:hover {
-            background-color: #0b5ed7;
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
         }
         
         .btn-add-to-wishlist {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: white;
-            border: 1px solid #dee2e6;
-            color: var(--dark-color);
-            font-weight: 500;
-            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            color: #06090d;
             border-radius: 0.5rem;
             transition: all 0.2s ease;
         }
         
         .btn-add-to-wishlist:hover {
-            background-color: #f8f9fa;
-            border-color: #ced4da;
+            background-color: #f8fafc;
+            color: var(--danger);
+            border-color: #cbd5e1;
         }
         
+        /* About Section */
+        .about-section {
+            padding: 5rem 0;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-img {
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--secondary);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background-color: #f1f5f9;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #06090d;
+        }
+        
+        .feature-text {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1883&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-cta {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
         footer {
-            background-color: var(--dark-color);
-            padding: 3rem 0;
-            margin-top: 3rem;
+            background-color: #06090d;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #334155;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
         }
         
         .footer-heading {
@@ -167,154 +553,375 @@
         }
         
         .footer-link {
-            color: rgba(255, 255, 255, 0.7) !important;
-            text-decoration: none;
-            transition: all 0.2s ease;
             display: block;
-            margin-bottom: 0.5rem;
+            color: #94a3b8 !important;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
         }
         
         .footer-link:hover {
             color: white !important;
+            transform: translateX(-5px);
         }
         
-        .footer-text {
-            color: rgba(255, 255, 255, 0.7);
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        /* Animations */
+        .animate-up {
+            animation: fadeInUp 1s ease;
+        }
+        
+        .animate-down {
+            animation: fadeInDown 1s ease;
+        }
+        
+        .animate-left {
+            animation: fadeInLeft 1s ease;
+        }
+        
+        .animate-right {
+            animation: fadeInRight 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-slider {
+                height: 500px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
         }
         
         @media (max-width: 768px) {
+            .hero-slider {
+                height: 400px;
+            }
+            
             .hero-title {
-                font-size: 2.25rem;
+                font-size: 2rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-slider {
+                height: 350px;
+            }
+            
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            
+            .btn-hero {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Modern Navigation -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">ShopSphere</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html">
-                            <span class="d-inline d-lg-none">Cart</span>
-                            <span class="d-none d-lg-inline"><i class="bi bi-cart3"></i> Cart</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wishlist.html">
-                            <span class="d-inline d-lg-none">Wishlist</span>
-                            <span class="d-none d-lg-inline"><i class="bi bi-heart"></i> Wishlist</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="orders.html">
-                            <span class="d-inline d-lg-none">Orders</span>
-                            <span class="d-none d-lg-inline"><i class="bi bi-box-seam"></i> Orders</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item" id="auth-links">
-                        <a class="nav-link" href="login.html"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                        <a class="nav-link" href="register.html"><i class="bi bi-person-plus"></i> Register</a>
-                    </li>
-                    <li class="nav-item d-none" id="profile-link">
-                        <a class="nav-link" href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
-                    </li>
-                    <li class="nav-item d-none" id="logout-link">
-                        <a class="nav-link" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
-                    </li>
-                </ul>
+    <!-- Navigation -->
+ <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-car"></i> أوتو شاين
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="product.html">
+                        <i class="fas fa-box-open"></i> المنتجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">
+                        <i class="fas fa-shopping-cart"></i> عربة التسوق
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="wishlist.html">
+                        <i class="fas fa-heart"></i> المفضلة
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders.html">
+                        <i class="fas fa-box"></i> الطلبات
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" id="auth-links">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a>
+                    <a class="nav-link" href="register.html">
+                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="profile-link">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> الملف الشخصي
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="logout-link">
+                    <a class="nav-link" href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background-image: url('images/p90220335_highres_bmw-i8-celebration-e.jpg');">
+            <div class="container">
+                <div class="hero-content animate-left">
+                    <h1 class="hero-title">منتجات مميزة للعناية بالسيارات</h1>
+                    <p class="hero-subtitle">امنح سيارتك اللمعان الذي تستحقه بمنتجاتنا الاحترافية للتنظيف</p>
+                    <a href="#featured-products" class="btn btn-light btn-hero">تسوق الآن</a>
+                </div>
             </div>
         </div>
-    </nav>
+        
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: url('images/2149212191.jpg');">
+            <div class="container">
+                <div class="hero-content animate-right">
+                    <h1 class="hero-title">احمي استثمارك</h1>
+                    <p class="hero-subtitle">تركيبات عالية الجودة تنظف، تحمي وتحافظ على مظهر سيارتك</p>
+                    <a href="#featured-products" class="btn btn-light btn-hero">اكتشف المزيد</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="hero-slide" style="background-image: url('images/2208_w018_n002_1188b_p15_1188.jpg');">
+            <div class="container">
+                <div class="hero-content animate-up">
+                    <h1 class="hero-title">نتائج احترافية في منزلك</h1>
+                    <p class="hero-subtitle">احصل على تلميع بجودة صالات العرض بمنتجاتنا سهلة الاستخدام</p>
+                    <a href="#featured-products" class="btn btn-light btn-hero">عرض المنتجات</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </div>
 
-    <!-- Modern Hero Section -->
-    <section class="hero-section">
+    <!-- Featured Products -->
+    <section class="py-5" id="featured-products">
+        <div class="container">
+            <h2 class="section-title animate-up">منتجات مميزة</h2>
+            <div class="row" id="products-container">
+                <!-- Products will be loaded here by products.js -->
+            </div>
+            <div class="text-center mt-4 animate-up">
+                <a href="product.html" style="background-color: #8e0202;" class="btn btn-primary btn-lg">عرض المزيد من المنتجات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="hero-title">Discover Amazing Products</h1>
-                    <p class="hero-subtitle">Shop the latest trends at unbeatable prices with fast delivery and excellent customer service.</p>
-                    <a href="product.html" class="btn btn-light btn-hero">Shop Now <i class="bi bi-arrow-right ms-2"></i></a>
+                <div class="col-lg-6 mb-4 mb-lg-0 animate-left">
+                    <img src="images/ChatGPT Image May 27, 2025, 12_50_37 PM.png" alt="عن أوتو شاين" class="img-fluid about-img">
                 </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <img src="images/Desktop Wallpaper _ Desktop Background _ Porsche 911 _ Sports Car _ Racing _ Gaming _ Computer Wallpaper _ Digital Download _ 1080p 1440p 4k - Etsy.jpeg" alt="Hero Image" class="img-fluid rounded-3 shadow">
+                <div class="col-lg-6 animate-right">
+                    <h2 class="section-title">عن أوتو شاين</h2>
+                    <p class="about-text">تأسست أوتو شاين في عام 2010 بمهمة بسيطة: تزويد عشاق السيارات والسائقين العاديين بمنتجات احترافية للعناية بالسيارات تقدم نتائج استثنائية دون أسعار باهظة.</p>
+                    <p class="about-text">يضع فريق خبرائنا في تلميع السيارات كل منتج بالتوازن المثالي بين قوة التنظيف وحماية الأسطح. نختبر كل منتج بدقة لضمان استيفائه لمعاييرنا العالية قبل أن يصل إلى مرآبك.</p>
+                    <p class="about-text">سواء كنت من محبي السيارات الذين يبحثون عن الحفاظ على سيارتهم بحالة ممتازة أو محترف تلميع يبحث عن منتجات موثوقة، فإن أوتو شاين لديها الحلول التي تحتاجها.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="container my-5" id="main-content">
-        <div class="row mb-4">
-            <div class="col-12">
-                <h2 class="fw-bold mb-4">Featured Products</h2>
-            </div>
-        </div>
-        <!-- Products will be loaded here by products.js -->
-        <div class="row g-4" id="products-container">
-            <!-- Product cards will be inserted here by JavaScript -->
-        </div>
-    </main>
-
-    <!-- Modern Footer -->
-    <footer>
+    <!-- Features Section -->
+    <section class="features-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="footer-heading">ShopSphere</h5>
-                    <p class="footer-text">Your one-stop shop for all your needs. Quality products, fast delivery, and excellent customer service.</p>
+            <h2 class="section-title text-center mb-5 animate-up">لماذا تختار أوتو شاين</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 animate-up" style="animation-delay: 0.1s;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="feature-title">تركيبات مميزة</h3>
+                        <p class="feature-text">منتجاتنا مصنوعة باستخدام أعلى المكونات جودة للتنظيف والحماية الفائقة.</p>
+                    </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                    <h5 class="footer-heading">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="footer-link">Home</a></li>
-                        <li><a href="cart.html" class="footer-link">Cart</a></li>
-                        <li><a href="wishlist.html" class="footer-link">Wishlist</a></li>
-                        <li><a href="orders.html" class="footer-link">Orders</a></li>
-                    </ul>
+                <div class="col-md-6 col-lg-3 animate-up" style="animation-delay: 0.2s;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="feature-title">صديقة للبيئة</h3>
+                        <p class="feature-text">نعطي الأولوية للمكونات الآمنة بيئيًا القاسية على الأوساخ ولكن اللطيفة على الكوكب.</p>
+                    </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                    <h5 class="footer-heading">Account</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="login.html" class="footer-link">Login</a></li>
-                        <li><a href="register.html" class="footer-link">Register</a></li>
-                        <li><a href="profile.html" class="footer-link">Profile</a></li>
-                    </ul>
+                <div class="col-md-6 col-lg-3 animate-up" style="animation-delay: 0.3s;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="feature-title">شحن سريع</h3>
+                        <p class="feature-text">احصل على منتجاتك بسرعة مع خيارات الشحن الموثوقة لدينا في جميع أنحاء البلاد.</p>
+                    </div>
                 </div>
-                <div class="col-lg-4">
-                    <h5 class="footer-heading">Contact Us</h5>
-                    <p class="footer-text"><i class="bi bi-envelope me-2"></i> info@shopsphere.com</p>
-                    <p class="footer-text"><i class="bi bi-telephone me-2"></i> +1 (555) 123-4567</p>
-                    <div class="mt-3">
-                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <div class="col-md-6 col-lg-3 animate-up" style="animation-delay: 0.4s;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="feature-title">دعم الخبراء</h3>
+                        <p class="feature-text">فريق خبرائنا في التلميع متاح لمساعدتك في الحصول على أفضل النتائج من منتجاتنا.</p>
                     </div>
                 </div>
             </div>
-            <hr class="my-4 bg-secondary">
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title animate-up">هل أنت مستعد لتحويل روتين العناية بسيارتك؟</h2>
+                <p class="cta-text animate-up" style="animation-delay: 0.2s;">انضم إلى آلاف العملاء الراضين الذين يثقون بأوتو شاين لاحتياجات تلميع سياراتهم. سجل اليوم واحصل على خصم 10٪ على طلبك الأول!</p>
+                <a href="register.html" class="btn btn-cta animate-up" style="animation-delay: 0.4s;">ابدأ الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="footer-text mb-0">© 2023 ShopSphere. All rights reserved.</p>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-car"></i> أوتو شاين
+                    </a>
+                    <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="footer-link me-3">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">تسوق</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">غسيل السيارات</a></li>
+                        <li><a href="#" class="footer-link">الشمع والتلميع</a></li>
+                        <li><a href="#" class="footer-link">العناية الداخلية</a></li>
+                        <li><a href="#" class="footer-link">ملحقات</a></li>
+                        <li><a href="#" class="footer-link">وصل حديثاً</a></li>
+                    </ul>
                 </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">الدعم</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">اتصل بنا</a></li>
+                        <li><a href="#" class="footer-link">الأسئلة الشائعة</a></li>
+                        <li><a href="#" class="footer-link">الشحن</a></li>
+                        <li><a href="#" class="footer-link">المرتجعات</a></li>
+                        <li><a href="#" class="footer-link">الإرشادات</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-heading">النشرة البريدية</h3>
+                    <p class="footer-text">اشترك للحصول على تحديثات حول المنتجات الجديدة والعروض الخاصة.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني" required>
+                            <button class="btn btn-primary" type="submit">اشتراك</button>
+                        </div>
+                    </form>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p class="footer-text"><i class="fas fa-envelope me-2"></i> info@autoshine.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2023 أوتو شاين. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -327,5 +934,122 @@
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>
     <script src="js/products.js"></script>
+    <script>
+        // Hero Slider Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check auth state
+            auth.checkAuthState();
+            
+            // Hero slider functionality
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            function nextSlide() {
+                let newIndex = (currentSlide + 1) % slides.length;
+                showSlide(newIndex);
+            }
+            
+            // Auto-advance slides every 5 seconds
+            setInterval(nextSlide, 5000);
+            
+            // Click on dots to navigate
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Load first 4 products
+            loadFeaturedProducts();
+        });
+        
+        async function loadFeaturedProducts() {
+            try {
+                const products = await api.get('/Products');
+                const featuredProducts = products.slice(0, 4); // Get first 4 products
+                
+                const container = document.getElementById('products-container');
+                container.innerHTML = '';
+                
+                featuredProducts.forEach((product, index) => {
+                    const priceHtml = product.discountedPrice 
+                        ? `<span class="original-price">$${product.price.toFixed(2)}</span>
+                           <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
+                        : `$${product.price.toFixed(2)}`;
+                    
+                    const productCard = document.createElement('div');
+                    productCard.className = `col-md-6 col-lg-3 animate-up`;
+                    productCard.style.animationDelay = `${0.1 * index}s`;
+                    productCard.innerHTML = `
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
+                                     alt="${product.name}" 
+                                     class="product-img">
+                                ${product.discountedPrice ? '<span class="product-badge">خصم</span>' : ''}
+                            </div>
+                            <div class="product-body">
+                                <h3 class="product-title">${product.name}</h3>
+                                <p class="product-category">${product.categoryName}</p>
+                                <div class="product-price">${priceHtml}</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-add-to-cart" data-product-id="${product.id}">
+                                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                                    </button>
+                                    <button class="btn btn-add-to-wishlist" data-product-id="${product.id}">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(productCard);
+                    
+                    // Add event listeners
+                    productCard.querySelector('.btn-add-to-cart').addEventListener('click', async () => {
+                        try {
+                            await cart.addToCart(product.id, 1);
+                            auth.showToast('تمت إضافة المنتج إلى السلة', 'success');
+                        } catch (error) {
+                            auth.showToast(error.message, 'danger');
+                        }
+                    });
+                    
+                    productCard.querySelector('.btn-add-to-wishlist').addEventListener('click', async () => {
+                        try {
+                            await wishlist.addToWishlist(product.id);
+                            auth.showToast('تمت إضافة المنتج إلى المفضلة', 'success');
+                        } catch (error) {
+                            auth.showToast(error.message, 'danger');
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading featured products:', error);
+                auth.showToast('فشل تحميل المنتجات', 'danger');
+            }
+        }
+    </script>
 </body>
 </html>

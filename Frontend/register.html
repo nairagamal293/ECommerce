@@ -1,111 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Store - Register</title>
-    <!-- Bootstrap 5 CSS -->
+    <title>أوتو شاين - تسجيل حساب جديد</title>
+    <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Tajawal for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary: #8e0202;
+            --primary-dark: #8e0202;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: #06090d;
+            overflow-x: hidden;
+            text-align: right;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            color: #06090d !important;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary) !important;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 9rem 0 4rem;
+        }
+        
+        /* Auth Form Styles */
+        .auth-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .auth-form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-form-header h2 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-form-header p {
+            color: var(--secondary);
+        }
+        
+        .auth-form .form-control {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(142, 2, 2, 0.25);
+        }
+        
+        .auth-form .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-form .btn-primary {
+            background-color: var(--primary);
+            border: none;
+            padding: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-form .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .auth-form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .auth-form-footer a {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .auth-form-footer a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .form-text {
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #06090d;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #334155;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-link {
+            display: block;
+            color: #94a3b8 !important;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: white !important;
+            transform: translateX(-5px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">E-Commerce</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wishlist.html">Wishlist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="orders.html">Orders</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item" id="auth-links">
-                        <a class="nav-link" href="login.html">Login</a>
-                        <a class="nav-link active" href="register.html">Register</a>
-                    </li>
-                    <li class="nav-item d-none" id="profile-link">
-                        <a class="nav-link" href="profile.html">Profile</a>
-                    </li>
-                    <li class="nav-item d-none" id="logout-link">
-                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
-                    </li>
-                </ul>
-            </div>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-car"></i> أوتو شاين
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product.html">
+                        <i class="fas fa-box"></i> المنتجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">
+                        <i class="fas fa-shopping-cart"></i> عربة التسوق
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="wishlist.html">
+                        <i class="fas fa-heart"></i> المفضلة
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders.html">
+                        <i class="fas fa-box-open"></i> الطلبات
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" id="auth-links">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a>
+                    <a class="nav-link active" href="register.html">
+                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="profile-link">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> الملف الشخصي
+                    </a>
+                </li>
+                <li class="nav-item d-none" id="logout-link">
+                    <a class="nav-link" href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Main Content -->
-    <main class="container my-5">
-        <div class="auth-form bg-white">
-            <h2 class="text-center mb-4">Register</h2>
-            <form id="register-form">
+    <main class="container">
+        <div class="auth-form-container animate-up">
+            <div class="auth-form-header">
+                <h2><i class="fas fa-user-plus me-2"></i>إنشاء حساب جديد</h2>
+                <p>انضم إلى أوتو شاين لبدء التسوق من منتجاتنا المميزة للعناية بالسيارات</p>
+            </div>
+            <form id="register-form" class="auth-form">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
                     <input type="email" class="form-control" id="email" required>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="first-name" class="form-label">First Name</label>
+                        <label for="first-name" class="form-label">الاسم الأول</label>
                         <input type="text" class="form-control" id="first-name" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="last-name" class="form-label">Last Name</label>
+                        <label for="last-name" class="form-label">الاسم الأخير</label>
                         <input type="text" class="form-control" id="last-name" required>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">كلمة المرور</label>
                     <input type="password" class="form-control" id="password" required minlength="8">
-                    <div class="form-text">Password must be at least 8 characters long.</div>
+                    <div class="form-text">يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.</div>
                 </div>
                 <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <label for="confirm-password" class="form-label">تأكيد كلمة المرور</label>
                     <input type="password" class="form-control" id="confirm-password" required minlength="8">
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-                <div class="text-center mt-3">
-                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-user-plus me-2"></i> تسجيل
+                </button>
+                <div class="auth-form-footer mt-3">
+                    <p>هل لديك حساب بالفعل؟ <a href="login.html">سجل الدخول من هنا</a></p>
                 </div>
             </form>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>Your one-stop shop for all your needs.</p>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-car"></i> أوتو شاين
+                    </a>
+                    <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">تسوق</h3>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white">Home</a></li>
-                        <li><a href="cart.html" class="text-white">Cart</a></li>
-                        <li><a href="wishlist.html" class="text-white">Wishlist</a></li>
+                        <li><a href="#" class="footer-link">غسيل السيارات</a></li>
+                        <li><a href="#" class="footer-link">الشمع والتلميع</a></li>
+                        <li><a href="#" class="footer-link">العناية الداخلية</a></li>
+                        <li><a href="#" class="footer-link">ملحقات</a></li>
+                        <li><a href="#" class="footer-link">وصل حديثاً</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5>Contact</h5>
-                    <p>Email: info@ecommerce.com</p>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">الدعم</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">اتصل بنا</a></li>
+                        <li><a href="#" class="footer-link">الأسئلة الشائعة</a></li>
+                        <li><a href="#" class="footer-link">الشحن</a></li>
+                        <li><a href="#" class="footer-link">المرتجعات</a></li>
+                        <li><a href="#" class="footer-link">الإرشادات</a></li>
+                    </ul>
                 </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-heading">النشرة البريدية</h3>
+                    <p class="footer-text">اشترك للحصول على تحديثات حول المنتجات الجديدة والعروض الخاصة.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني" required>
+                            <button class="btn btn-primary" type="submit">اشتراك</button>
+                        </div>
+                    </form>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p class="footer-text"><i class="fas fa-envelope me-2"></i> info@autoshine.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2023 أوتو شاين. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -118,6 +405,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             auth.checkAuthState();
             
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
             document.getElementById('register-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
@@ -128,7 +425,7 @@
                 const confirmPassword = document.getElementById('confirm-password').value;
                 
                 if (password !== confirmPassword) {
-                    auth.showToast('Passwords do not match', 'danger');
+                    auth.showToast('كلمات المرور غير متطابقة', 'danger');
                     return;
                 }
                 
