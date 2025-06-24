@@ -78,6 +78,34 @@ function renderCategoriesSidebar(categories, products, wishlistItems) {
     setupCategoryFilters(products, wishlistItems);
 }
 
+// Search functionality
+document.getElementById('product-search').addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const productsGrid = document.getElementById('products-grid');
+    
+    // Show loading state
+    productsGrid.innerHTML = `
+        <div class="col-12 text-center py-3">
+            <div class="loading-spinner text-primary"></div>
+            <p class="mt-2">جاري البحث عن المنتجات...</p>
+        </div>
+    `;
+    
+    setTimeout(() => {
+        // Filter products based on search term
+        const filteredProducts = products.filter(p => 
+            p.name.toLowerCase().includes(searchTerm) || 
+            p.description.toLowerCase().includes(searchTerm) ||
+            p.categoryName.toLowerCase().includes(searchTerm)
+        );
+        
+        // Clear and re-render products
+        productsGrid.innerHTML = '';
+        renderFilteredProducts(filteredProducts, wishlistItems);
+    }, 500);
+});
+
+
 function setupCategoryFilters(products, wishlistItems) {
     const categoryItems = document.querySelectorAll('#categories-list li');
     

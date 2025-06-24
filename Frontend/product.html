@@ -118,6 +118,70 @@
         .navbar-toggler:focus {
             box-shadow: none;
         }
+
+        /* Hero Section */
+.products-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('images/AUDI.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 6rem 0;
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-search {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-search .form-control {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.hero-search .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Responsive adjustments for hero */
+@media (max-width: 768px) {
+    .products-hero {
+        padding: 4rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
         /* Category Sidebar */
 .category-sidebar {
     position: sticky;
@@ -533,8 +597,30 @@
     </div>
 </nav>
 
+<!-- Hero Section -->
+<section class="products-hero">
+    <div class="container">
+        <div class="hero-content text-center py-5">
+            <h1 class="hero-title animate__animated animate__fadeInDown">اكتشف أفضل منتجات العناية بالسيارات</h1>
+            <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">جودة احترافية لسيارة تبدو وكأنها جديدة دائمًا</p>
+            <div class="hero-search animate__animated animate__fadeIn animate__delay-2s">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="ابحث عن منتجات العناية بالسيارات..." id="product-search">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i> بحث
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- Main Content -->
     <main class="container" id="main-content">
+
+        
+
+
         <!-- Products will be loaded here by products.js -->
     </main>
 
