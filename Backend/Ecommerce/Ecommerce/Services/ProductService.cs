@@ -85,6 +85,16 @@ namespace Ecommerce.Services
             return true;
         }
 
+        public async Task<IEnumerable<ProductReadDto>> GetProductsByCategoryAsync(int categoryId)
+        {
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId == categoryId)
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<ProductReadDto>>(products);
+        }
+
         public async Task<string> UploadProductImageAsync(int productId, IFormFile file)
         {
             var product = await _context.Products.FindAsync(productId);

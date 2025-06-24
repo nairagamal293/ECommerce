@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أوتو شاين - منتجات العناية بالسيارات</title>
+    <title>Revamp Auto  - منتجات العناية بالسيارات</title>
     <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
@@ -234,7 +234,30 @@
             background-color: var(--primary);
             border-radius: 2px;
         }
-        
+        /* Services Section */
+.services-section {
+    position: relative;
+}
+
+.service-card {
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.service-icon i {
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon i {
+    transform: scale(1.1);
+}
         .product-card {
             border: none;
             border-radius: 0.75rem;
@@ -681,11 +704,12 @@
 </head>
 <body>
     <!-- Navigation -->
- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fas fa-car"></i> أوتو شاين
-        </a>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
+                <span style="margin-right: 10px;">Revamp Auto </span>
+            </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -785,6 +809,47 @@
         </div>
     </div>
 
+
+
+        <!-- Services Section -->
+    <section class="services-section py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title text-center mb-5 animate-up">خدماتنا المتخصصة</h2>
+            <div class="row g-4">
+                <div class="col-md-4 animate-up" style="animation-delay: 0.1s;">
+                    <div class="service-card text-center p-4 rounded-3 h-100">
+                        <div class="service-icon mb-4">
+                            <i class="fas fa-car-wash fa-3x" style="color: #8e0202;"></i>
+                        </div>
+                        <h3 class="h4 mb-3">حماية الطلاء</h3>
+                        <p class="text-muted">منتجات حماية الطلاء عالية الجودة التي تحافظ على لمعان سيارتك وتحميها من العوامل الجوية والتآكل</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-up" style="animation-delay: 0.2s;">
+                    <div class="service-card text-center p-4 rounded-3 h-100">
+                        <div class="service-icon mb-4">
+                            <i class="fas fa-spray-can fa-3x" style="color: #8e0202;"></i>
+                        </div>
+                        <h3 class="h4 mb-3">تنظيف داخلي</h3>
+                        <p class="text-muted">مجموعة متكاملة لتنظيف وتجديد المقاعد والأسطح الداخلية لسيارتك بتركيبات آمنة وفعالة</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-up" style="animation-delay: 0.3s;">
+                    <div class="service-card text-center p-4 rounded-3 h-100">
+                        <div class="service-icon mb-4">
+                            <i class="fas fa-wind fa-3x" style="color: #8e0202;"></i>
+                        </div>
+                        <h3 class="h4 mb-3">عناية المحرك</h3>
+                        <p class="text-muted">حلول متخصصة لتنظيف وإظهار محرك سيارتك مع الحفاظ على مكوناته الكهربائية</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+  
+
     <!-- Featured Products -->
     <section class="py-5" id="featured-products">
         <div class="container">
@@ -803,13 +868,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0 animate-left">
-                    <img src="images/ChatGPT Image May 27, 2025, 12_50_37 PM.png" alt="عن أوتو شاين" class="img-fluid about-img">
+                    <img src="images/ChatGPT Image May 27, 2025, 12_50_37 PM.png" alt="عن Revamp Auto " class="img-fluid about-img">
                 </div>
                 <div class="col-lg-6 animate-right">
-                    <h2 class="section-title">عن أوتو شاين</h2>
-                    <p class="about-text">تأسست أوتو شاين في عام 2010 بمهمة بسيطة: تزويد عشاق السيارات والسائقين العاديين بمنتجات احترافية للعناية بالسيارات تقدم نتائج استثنائية دون أسعار باهظة.</p>
+                    <h2 class="section-title">عن Revamp Auto </h2>
+                    <p class="about-text">تأسست Revamp Auto  في عام 2010 بمهمة بسيطة: تزويد عشاق السيارات والسائقين العاديين بمنتجات احترافية للعناية بالسيارات تقدم نتائج استثنائية دون أسعار باهظة.</p>
                     <p class="about-text">يضع فريق خبرائنا في تلميع السيارات كل منتج بالتوازن المثالي بين قوة التنظيف وحماية الأسطح. نختبر كل منتج بدقة لضمان استيفائه لمعاييرنا العالية قبل أن يصل إلى مرآبك.</p>
-                    <p class="about-text">سواء كنت من محبي السيارات الذين يبحثون عن الحفاظ على سيارتهم بحالة ممتازة أو محترف تلميع يبحث عن منتجات موثوقة، فإن أوتو شاين لديها الحلول التي تحتاجها.</p>
+                    <p class="about-text">سواء كنت من محبي السيارات الذين يبحثون عن الحفاظ على سيارتهم بحالة ممتازة أو محترف تلميع يبحث عن منتجات موثوقة، فإن Revamp Auto  لديها الحلول التي تحتاجها.</p>
                 </div>
             </div>
         </div>
@@ -818,7 +883,7 @@
     <!-- Features Section -->
     <section class="features-section">
         <div class="container">
-            <h2 class="section-title text-center mb-5 animate-up">لماذا تختار أوتو شاين</h2>
+            <h2 class="section-title text-center mb-5 animate-up">لماذا تختار Revamp Auto </h2>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3 animate-up" style="animation-delay: 0.1s;">
                     <div class="feature-card">
@@ -865,7 +930,7 @@
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title animate-up">هل أنت مستعد لتحويل روتين العناية بسيارتك؟</h2>
-                <p class="cta-text animate-up" style="animation-delay: 0.2s;">انضم إلى آلاف العملاء الراضين الذين يثقون بأوتو شاين لاحتياجات تلميع سياراتهم. سجل اليوم واحصل على خصم 10٪ على طلبك الأول!</p>
+                <p class="cta-text animate-up" style="animation-delay: 0.2s;">انضم إلى آلاف العملاء الراضين الذين يثقون بRevamp Auto  لاحتياجات تلميع سياراتهم. سجل اليوم واحصل على خصم 10٪ على طلبك الأول!</p>
                 <a href="register.html" class="btn btn-cta animate-up" style="animation-delay: 0.4s;">ابدأ الآن</a>
             </div>
         </div>
@@ -876,9 +941,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <a href="index.html" class="footer-logo">
-                        <i class="fas fa-car"></i> أوتو شاين
-                    </a>
+                    <a class="navbar-brand" href="index.html">
+                <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
+                <span style="margin-right: 10px;">Revamp Auto </span>
+            </a>
                     <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -921,7 +987,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="mb-0">&copy; 2023 أوتو شاين. جميع الحقوق محفوظة.</p>
+                <p class="mb-0">&copy; 2023 Revamp Auto . جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>

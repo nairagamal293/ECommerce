@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أوتو شاين - منتجات العناية بالسيارات</title>
+    <title>Revamp Auto  - منتجات العناية بالسيارات</title>
     <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
@@ -118,7 +118,43 @@
         .navbar-toggler:focus {
             box-shadow: none;
         }
-        
+        /* Category Sidebar */
+.category-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+#categories-list .list-group-item {
+    cursor: pointer;
+    border-right: 3px solid transparent;
+    transition: all 0.3s ease;
+    text-align: right;
+    padding: 0.75rem 1.25rem;
+}
+
+#categories-list .list-group-item:hover {
+    background-color: #f8f9fa;
+    border-right-color: var(--primary);
+}
+
+#categories-list .list-group-item.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    border-right-color: var(--primary-dark);
+}
+
+#categories-list .list-group-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .category-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+}
         /* Main Content */
         main {
             padding: 6rem 0 4rem;
@@ -186,7 +222,7 @@
             left: 190px;
             background-color: var(--primary);
             color: white;
-            padding: 0.25rem 0.5rem;
+            padding: 0.25rem 2.7rem;
             border-radius: 0.25rem;
             font-size: 0.75rem;
             font-weight: 600;
@@ -250,24 +286,33 @@
             transform: translateY(-2px);
         }
         
-        .btn-add-to-wishlist {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: white;
-            border: 1px solid #e2e8f0;
-            color: #06090d;
-            border-radius: 0.5rem;
-            transition: all 0.2s ease;
-        }
-        
-        .btn-add-to-wishlist:hover {
-            background-color: #f8fafc;
-            color: var(--danger);
-            border-color: #cbd5e1;
-        }
+       .btn-add-to-wishlist {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    color: #06090d;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-add-to-wishlist:hover {
+    background-color: #f8fafc;
+    color: var(--danger);
+    border-color: #cbd5e1;
+}
+
+.btn-add-to-wishlist.text-danger {
+    color: var(--danger) !important;
+    border-color: var(--danger);
+}
+
+.btn-add-to-wishlist.text-danger:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
         
         /* Loading Spinner */
         .loading-spinner {
@@ -428,10 +473,11 @@
 <body>
     <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fas fa-car"></i> أوتو شاين
-        </a>
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
+                <span style="margin-right: 10px;">Revamp Auto </span>
+            </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -497,9 +543,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <a href="index.html" class="footer-logo">
-                        <i class="fas fa-car"></i> أوتو شاين
-                    </a>
+                        <a class="navbar-brand" href="index.html">
+                <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
+                <span style="margin-right: 10px;">Revamp Auto </span>
+            </a>
                     <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -542,7 +589,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="mb-0">&copy; 2023 أوتو شاين. جميع الحقوق محفوظة.</p>
+                <p class="mb-0">&copy; 2023 Revamp Auto . جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -555,125 +602,6 @@
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>
     <script src="js/products.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            auth.checkAuthState();
-            
-            // Show loading state
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `
-                <div class="text-center py-5">
-                    <div class="loading-spinner"></div>
-                    <p class="mt-3">جاري تحميل المنتجات...</p>
-                </div>
-            `;
-            
-            try {
-                // Fetch all products
-                const products = await api.get('/Products');
-                
-                // Render products
-                renderProducts(products);
-            } catch (error) {
-                auth.showToast(error.message, 'danger');
-                mainContent.innerHTML = `
-                    <div class="alert alert-danger">
-                        فشل تحميل المنتجات. يرجى المحاولة مرة أخرى لاحقًا.
-                    </div>
-                `;
-            }
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        });
-        
-        function renderProducts(products) {
-            const mainContent = document.getElementById('main-content');
-            
-            if (products.length === 0) {
-                mainContent.innerHTML = `
-                    <div class="alert alert-info">
-                        لا توجد منتجات متاحة.
-                    </div>
-                `;
-                return;
-            }
-            
-            mainContent.innerHTML = `
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h2 class="section-title animate-up">جميع المنتجات</h2>
-                    </div>
-                </div>
-                <div class="row g-4" id="products-grid">
-                    <!-- Products will be inserted here -->
-                </div>
-            `;
-            
-            const productsGrid = document.getElementById('products-grid');
-            
-            products.forEach((product, index) => {
-                const priceHtml = product.discountedPrice 
-                    ? `<span class="original-price">$${product.price.toFixed(2)}</span>
-                       <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
-                    : `$${product.price.toFixed(2)}`;
-                
-                const productCard = document.createElement('div');
-                productCard.className = `col-md-6 col-lg-4 col-xl-3 animate-up`;
-                productCard.style.animationDelay = `${0.1 * index}s`;
-                productCard.innerHTML = `
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
-                                 alt="${product.name}" 
-                                 class="product-img">
-                            ${product.discountedPrice ? '<span class="product-badge">خصم</span>' : ''}
-                        </div>
-                        <div class="product-body">
-                            <h3 class="product-title">${product.name}</h3>
-                            <p class="product-category">${product.categoryName}</p>
-                            <div class="product-price">${priceHtml}</div>
-                            <div class="product-actions">
-                                <button class="btn btn-add-to-cart" data-product-id="${product.id}">
-                                    <i class="fas fa-cart-plus"></i> أضف للسلة
-                                </button>
-                                <button class="btn btn-add-to-wishlist" data-product-id="${product.id}">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                productsGrid.appendChild(productCard);
-                
-                // Add event listeners
-                productCard.querySelector('.btn-add-to-cart').addEventListener('click', async () => {
-                    try {
-                        await cart.addToCart(product.id, 1);
-                        auth.showToast('تمت إضافة المنتج إلى السلة', 'success');
-                    } catch (error) {
-                        auth.showToast(error.message, 'danger');
-                    }
-                });
-                
-                productCard.querySelector('.btn-add-to-wishlist').addEventListener('click', async () => {
-                    try {
-                        await wishlist.addToWishlist(product.id);
-                        auth.showToast('تمت إضافة المنتج إلى المفضلة', 'success');
-                    } catch (error) {
-                        auth.showToast(error.message, 'danger');
-                    }
-                });
-            });
-        }
-    </script>
+    
 </body>
 </html>

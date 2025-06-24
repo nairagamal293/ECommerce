@@ -27,27 +27,69 @@ namespace Ecommerce.Controllers
         }
 
         [HttpPost("items")]
+        [Authorize]
         public async Task<ActionResult<WishlistItemReadDto>> AddItemToWishlist(WishlistItemAddDto wishlistItemAddDto)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var wishlistItem = await _wishlistService.AddItemToWishlistAsync(userId, wishlistItemAddDto);
-            return CreatedAtAction(nameof(GetWishlist), wishlistItem);
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var wishlistItem = await _wishlistService.AddItemToWishlistAsync(userId, wishlistItemAddDto);
+                return CreatedAtAction(nameof(GetWishlist), wishlistItem);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         [HttpDelete("items/{itemId}")]
         public async Task<ActionResult> RemoveItemFromWishlist(int itemId)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            await _wishlistService.RemoveItemFromWishlistAsync(userId, itemId);
-            return NoContent();
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                var result = await _wishlistService.RemoveItemFromWishlistAsync(userId, itemId);
+                if (!result)
+                {
+                    return NotFound("Wishlist item not found");
+                }
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         [HttpDelete]
         public async Task<ActionResult> ClearWishlist()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            await _wishlistService.ClearWishlistAsync(userId);
-            return NoContent();
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized();
+                }
+
+                var result = await _wishlistService.ClearWishlistAsync(userId);
+                if (!result)
+                {
+                    return NotFound("Wishlist not found");
+                }
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
     }
 }

@@ -17,10 +17,27 @@ namespace Ecommerce.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAllProducts([FromQuery] int? categoryId)
         {
-            var products = await _productService.GetAllProductsAsync();
-            return Ok(products);
+            try
+            {
+                IEnumerable<ProductReadDto> products;
+
+                if (categoryId.HasValue)
+                {
+                    products = await _productService.GetProductsByCategoryAsync(categoryId.Value);
+                }
+                else
+                {
+                    products = await _productService.GetAllProductsAsync();
+                }
+
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]

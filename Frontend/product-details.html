@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revamp Auto  - الملف الشخصي</title>
+    <title>تفاصيل المنتج - Revamp Auto </title>
+    <!-- Include all the same CSS/JS files as product.html -->
     <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
@@ -16,6 +17,7 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
@@ -58,6 +60,12 @@
             align-items: center;
         }
         
+        .navbar-brand img {
+            height: 40px;
+            margin-left: 10px;
+            margin-right: 0;
+        }
+        
         .nav-link {
             font-weight: 500;
             padding: 0.5rem 1rem !important;
@@ -85,61 +93,262 @@
             width: 100%;
         }
         
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            text-align: right;
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary);
+            color: white !important;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        /* Product Details Page */
+.product-image-container {
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+}
+
+.product-image-container img {
+    max-height: 500px;
+    width: auto;
+    object-fit: contain;
+}
+
+.quantity-selector {
+    width: 150px;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#product-quantity {
+    height: 40px;
+}
+
+@media (max-width: 767.98px) {
+    .product-image-container {
+        margin-bottom: 2rem;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+    
+    .quantity-selector {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+}
+        /* Category Sidebar */
+.category-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+#categories-list .list-group-item {
+    cursor: pointer;
+    border-right: 3px solid transparent;
+    transition: all 0.3s ease;
+    text-align: right;
+    padding: 0.75rem 1.25rem;
+}
+
+#categories-list .list-group-item:hover {
+    background-color: #f8f9fa;
+    border-right-color: var(--primary);
+}
+
+#categories-list .list-group-item.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    border-right-color: var(--primary-dark);
+}
+
+#categories-list .list-group-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .category-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+}
         /* Main Content */
         main {
             padding: 6rem 0 4rem;
         }
         
-        /* Profile Styles */
-        .profile-card {
+        /* Section Title */
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* Product Card */
+        .product-card {
             border: none;
             border-radius: 0.75rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            background-color: white;
+            margin-bottom: 1.5rem;
         }
         
-        .profile-header {
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8fafc;
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 190px;
             background-color: var(--primary);
             color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .product-body {
             padding: 1.5rem;
-            text-align: center;
         }
         
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #06090d;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
-        .member-since {
-            color: rgba(255, 255, 255, 0.8);
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: #06090d;
+            margin-bottom: 1rem;
+        }
+        
+        .discounted-price {
+            color: var(--danger);
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--secondary);
             font-size: 0.9rem;
+            margin-left: 0.5rem;
         }
         
-        .profile-form .form-control {
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            border: 1px solid #e2e8f0;
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
         }
         
-        .profile-form .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(142, 2, 2, 0.25);
-        }
-        
-        .btn-primary {
+        .btn-add-to-cart {
+            flex: 1;
             background-color: var(--primary);
-            border-color: var(--primary);
-            padding: 0.75rem 1.5rem;
+            color: white;
+            border: none;
             font-weight: 500;
+            padding: 0.5rem;
             border-radius: 0.5rem;
+            transition: all 0.2s ease;
         }
         
-        .btn-primary:hover {
+        .btn-add-to-cart:hover {
             background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-add-to-wishlist {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            color: #06090d;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-add-to-wishlist:hover {
+            background-color: #f8fafc;
+            color: var(--danger);
+            border-color: #cbd5e1;
         }
         
         /* Loading Spinner */
@@ -228,11 +437,79 @@
             text-align: center;
             color: #94a3b8;
         }
+        
+        /* Animations */
+        .animate-up {
+            animation: fadeInUp 1s ease;
+        }
+        
+        .animate-down {
+            animation: fadeInDown 1s ease;
+        }
+        
+        .animate-left {
+            animation: fadeInLeft 1s ease;
+        }
+        
+        .animate-right {
+            animation: fadeInRight 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
@@ -249,8 +526,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="product.html">
-                        <i class="fas fa-box"></i> المنتجات
+                    <a class="nav-link active" href="product.html">
+                        <i class="fas fa-box-open"></i> المنتجات
                     </a>
                 </li>
                 <li class="nav-item">
@@ -279,7 +556,7 @@
                     </a>
                 </li>
                 <li class="nav-item d-none" id="profile-link">
-                    <a class="nav-link active" href="profile.html">
+                    <a class="nav-link" href="profile.html">
                         <i class="fas fa-user-circle"></i> الملف الشخصي
                     </a>
                 </li>
@@ -292,14 +569,27 @@
         </div>
     </div>
 </nav>
-
-
+</br></br></br></br>
     <!-- Main Content -->
-    <main class="container" id="main-content">
-        <!-- Profile will be loaded here by profile.js -->
+    <main class="container py-5" id="product-details">
+        <div class="row">
+            <div class="col-12">
+                <a href="product.html" class="btn btn-outline-primary mb-4">
+                    <i class="fas fa-arrow-right me-2"></i> العودة إلى المنتجات
+                </a>
+            </div>
+        </div>
+        
+        <div class="row" id="product-details-content">
+            <!-- Product details will be loaded here -->
+            <div class="col-12 text-center py-5">
+                <div class="loading-spinner text-primary"></div>
+                <p class="mt-2">جاري تحميل تفاصيل المنتج...</p>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer -->
+       <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -355,147 +645,13 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="js/auth.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/profile.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            auth.checkAuthState();
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-            
-            // Show loading state
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `
-                <div class="text-center py-5">
-                    <div class="loading-spinner"></div>
-                    <p class="mt-3">جاري تحميل الملف الشخصي...</p>
-                </div>
-            `;
-            
-            try {
-                // Fetch current user
-                const user = await api.get('/Auth/me');
-                
-                // Render profile
-                renderProfile(user);
-            } catch (error) {
-                auth.showToast(error.message, 'danger');
-                mainContent.innerHTML = `
-                    <div class="alert alert-danger">
-                        ${error.message}
-                    </div>
-                `;
-            }
-        });
-        
-        function renderProfile(user) {
-            const mainContent = document.getElementById('main-content');
-            
-            mainContent.innerHTML = `
-                <div class="row animate-up">
-                    <div class="col-lg-4">
-                        <div class="profile-card">
-                            <div class="profile-header">
-                                <img src="images/Profile_avatar_placeholder_large.png" 
-                                     alt="avatar" 
-                                     class="profile-avatar rounded-circle mb-3">
-                                <h4 class="mb-1">${user.firstName} ${user.lastName}</h4>
-                                <p class="member-since mb-0">
-                                    <i class="fas fa-calendar-alt ms-1"></i>
-                                    عضو منذ ${new Date(user.createdAt).toLocaleDateString('ar-EG')}
-                                </p>
-                            </div>
-                            <div class="card-body text-center">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <a href="orders.html" class="btn btn-outline-primary ms-2">
-                                        <i class="fas fa-box-open ms-1"></i> الطلبات
-                                    </a>
-                                    <button class="btn btn-outline-danger" id="logout-btn">
-                                        <i class="fas fa-sign-out-alt ms-1"></i> تسجيل الخروج
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 animate-up" style="animation-delay: 0.2s;">
-                        <div class="profile-card">
-                            <div class="card-body">
-                                <h4 class="mb-4">
-                                    <i class="fas fa-user-edit ms-2"></i>معلومات الملف الشخصي
-                                </h4>
-                                <form id="profile-form" class="profile-form">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">الاسم الأول</label>
-                                            <input type="text" class="form-control" id="first-name" value="${user.firstName}">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">الاسم الأخير</label>
-                                            <input type="text" class="form-control" id="last-name" value="${user.lastName}">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">البريد الإلكتروني</label>
-                                        <input type="email" class="form-control" id="email" value="${user.email}" disabled>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">كلمة المرور</label>
-                                        <input type="password" class="form-control" id="password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">تأكيد كلمة المرور</label>
-                                        <input type="password" class="form-control" id="confirm-password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save ms-1"></i> تحديث الملف
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Form submission
-            document.getElementById('profile-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const firstName = document.getElementById('first-name').value;
-                const lastName = document.getElementById('last-name').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
-                
-                if (password && password !== confirmPassword) {
-                    auth.showToast('كلمات المرور غير متطابقة', 'danger');
-                    return;
-                }
-                
-                try {
-                    // In a real app, you would call an API endpoint to update the profile
-                    // For this demo, we'll just show a success message
-                    auth.showToast('تم تحديث الملف الشخصي بنجاح', 'success');
-                } catch (error) {
-                    auth.showToast(error.message, 'danger');
-                }
-            });
-            
-            // Logout button
-            document.getElementById('logout-btn').addEventListener('click', () => {
-                auth.logout();
-            });
-        }
-    </script>
+
+    <!-- Scripts -->
+    <!-- In product-details.html -->
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script> <!-- Add this line -->
+<script src="js/product-details.js"></script>
 </body>
 </html>
