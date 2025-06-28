@@ -9,5 +9,6 @@ namespace Ecommerce.Services
         Task<UserReadDto> GetCurrentUserAsync(string userId);
 
         Task<IEnumerable<UserReadDto>> GetAllUsersAsync();
+        Task<UserReadDto> UpdateUserAsync(string userId, UserUpdateDto userUpdateDto);
     }
 }

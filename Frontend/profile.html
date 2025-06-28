@@ -84,7 +84,18 @@
         .nav-link:hover:after, .nav-link.active:after {
             width: 100%;
         }
-        
+        /* Badge styles */
+.nav-link .badge {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.4rem;
+    min-width: 1.25rem;
+    line-height: 1;
+}
+
+/* Remove the RTL adjustment since we're handling it inline */
+[dir="rtl"] .nav-link .position-absolute {
+    left: auto !important;
+}
         /* Main Content */
         main {
             padding: 6rem 0 4rem;
@@ -253,16 +264,24 @@
                         <i class="fas fa-box"></i> المنتجات
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">
-                        <i class="fas fa-shopping-cart"></i> عربة التسوق
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="wishlist.html">
-                        <i class="fas fa-heart"></i> المفضلة
-                    </a>
-                </li>
+               <li class="nav-item">
+    <a class="nav-link position-relative" href="cart.html">
+        <i class="fas fa-shopping-cart"></i> عربة التسوق
+        <span id="cart-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+              style="right: -5px;">
+            0
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link position-relative" href="wishlist.html">
+        <i class="fas fa-heart"></i> المفضلة
+        <span id="wishlist-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+              style="right: -5px;">
+            0
+        </span>
+    </a>
+</li>
                 <li class="nav-item">
                     <a class="nav-link" href="orders.html">
                         <i class="fas fa-box-open"></i> الطلبات
@@ -361,141 +380,170 @@
     <script src="js/auth.js"></script>
     <script src="js/api.js"></script>
     <script src="js/profile.js"></script>
+    <!-- Add this near your other JS files -->
+<script src="js/badges.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            auth.checkAuthState();
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-            
-            // Show loading state
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `
-                <div class="text-center py-5">
-                    <div class="loading-spinner"></div>
-                    <p class="mt-3">جاري تحميل الملف الشخصي...</p>
-                </div>
-            `;
-            
-            try {
-                // Fetch current user
-                const user = await api.get('/Auth/me');
-                
-                // Render profile
-                renderProfile(user);
-            } catch (error) {
-                auth.showToast(error.message, 'danger');
-                mainContent.innerHTML = `
-                    <div class="alert alert-danger">
-                        ${error.message}
-                    </div>
-                `;
-            }
-        });
+       // In your profile.js or the script section of profile.html
+
+document.addEventListener('DOMContentLoaded', async () => {
+    auth.checkAuthState();
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Show loading state
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = `
+        <div class="text-center py-5">
+            <div class="loading-spinner"></div>
+            <p class="mt-3">جاري تحميل الملف الشخصي...</p>
+        </div>
+    `;
+    
+    try {
+        // Fetch current user
+        const user = await api.get('/Auth/me');
         
-        function renderProfile(user) {
-            const mainContent = document.getElementById('main-content');
-            
-            mainContent.innerHTML = `
-                <div class="row animate-up">
-                    <div class="col-lg-4">
-                        <div class="profile-card">
-                            <div class="profile-header">
-                                <img src="images/Profile_avatar_placeholder_large.png" 
-                                     alt="avatar" 
-                                     class="profile-avatar rounded-circle mb-3">
-                                <h4 class="mb-1">${user.firstName} ${user.lastName}</h4>
-                                <p class="member-since mb-0">
-                                    <i class="fas fa-calendar-alt ms-1"></i>
-                                    عضو منذ ${new Date(user.createdAt).toLocaleDateString('ar-EG')}
-                                </p>
-                            </div>
-                            <div class="card-body text-center">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <a href="orders.html" class="btn btn-outline-primary ms-2">
-                                        <i class="fas fa-box-open ms-1"></i> الطلبات
-                                    </a>
-                                    <button class="btn btn-outline-danger" id="logout-btn">
-                                        <i class="fas fa-sign-out-alt ms-1"></i> تسجيل الخروج
-                                    </button>
+        // Render profile
+        renderProfile(user);
+    } catch (error) {
+        auth.showToast(error.message, 'danger');
+        mainContent.innerHTML = `
+            <div class="alert alert-danger">
+                ${error.message}
+            </div>
+        `;
+    }
+});
+
+function renderProfile(user) {
+    const mainContent = document.getElementById('main-content');
+    
+    mainContent.innerHTML = `
+        <div class="row animate-up">
+            <div class="col-lg-4">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <img src="images/Profile_avatar_placeholder_large.png" 
+                             alt="avatar" 
+                             class="profile-avatar rounded-circle mb-3">
+                        <h4 class="mb-1">${user.firstName} ${user.lastName}</h4>
+                        <p class="member-since mb-0">
+                            <i class="fas fa-calendar-alt ms-1"></i>
+                            عضو منذ ${new Date(user.createdAt).toLocaleDateString('ar-EG')}
+                        </p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="d-flex justify-content-center mb-3">
+                            <a href="orders.html" class="btn btn-outline-primary ms-2">
+                                <i class="fas fa-box-open ms-1"></i> الطلبات
+                            </a>
+                            <button class="btn btn-outline-danger" id="logout-btn">
+                                <i class="fas fa-sign-out-alt ms-1"></i> تسجيل الخروج
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 animate-up" style="animation-delay: 0.2s;">
+                <div class="profile-card">
+                    <div class="card-body">
+                        <h4 class="mb-4">
+                            <i class="fas fa-user-edit ms-2"></i>معلومات الملف الشخصي
+                        </h4>
+                        <form id="profile-form" class="profile-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">الاسم الأول</label>
+                                    <input type="text" class="form-control" id="first-name" value="${user.firstName}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">الاسم الأخير</label>
+                                    <input type="text" class="form-control" id="last-name" value="${user.lastName}" required>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 animate-up" style="animation-delay: 0.2s;">
-                        <div class="profile-card">
-                            <div class="card-body">
-                                <h4 class="mb-4">
-                                    <i class="fas fa-user-edit ms-2"></i>معلومات الملف الشخصي
-                                </h4>
-                                <form id="profile-form" class="profile-form">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">الاسم الأول</label>
-                                            <input type="text" class="form-control" id="first-name" value="${user.firstName}">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">الاسم الأخير</label>
-                                            <input type="text" class="form-control" id="last-name" value="${user.lastName}">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">البريد الإلكتروني</label>
-                                        <input type="email" class="form-control" id="email" value="${user.email}" disabled>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">كلمة المرور</label>
-                                        <input type="password" class="form-control" id="password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">تأكيد كلمة المرور</label>
-                                        <input type="password" class="form-control" id="confirm-password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save ms-1"></i> تحديث الملف
-                                    </button>
-                                </form>
+                            <div class="mb-3">
+                                <label class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" id="email" value="${user.email}" disabled>
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">كلمة المرور</label>
+                                <input type="password" class="form-control" id="password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">تأكيد كلمة المرور</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="update-btn">
+                                <i class="fas fa-save ms-1"></i> تحديث الملف
+                            </button>
+                        </form>
                     </div>
                 </div>
-            `;
-            
-            // Form submission
-            document.getElementById('profile-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const firstName = document.getElementById('first-name').value;
-                const lastName = document.getElementById('last-name').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
-                
-                if (password && password !== confirmPassword) {
-                    auth.showToast('كلمات المرور غير متطابقة', 'danger');
-                    return;
-                }
-                
-                try {
-                    // In a real app, you would call an API endpoint to update the profile
-                    // For this demo, we'll just show a success message
-                    auth.showToast('تم تحديث الملف الشخصي بنجاح', 'success');
-                } catch (error) {
-                    auth.showToast(error.message, 'danger');
-                }
-            });
-            
-            // Logout button
-            document.getElementById('logout-btn').addEventListener('click', () => {
-                auth.logout();
-            });
+            </div>
+        </div>
+    `;
+    
+    // Form submission
+    document.getElementById('profile-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+    if (password && password !== confirmPassword) {
+        auth.showToast('كلمات المرور غير متطابقة', 'danger');
+        return;
+    }
+    
+    try {
+        const updateBtn = document.getElementById('update-btn');
+        updateBtn.disabled = true;
+        updateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> جاري التحديث...';
+        
+        // Prepare update data
+        const updateData = {
+            firstName: firstName,
+            lastName: lastName
+        };
+        
+        // Only include password if it's provided
+        if (password) {
+            updateData.password = password;
         }
+        
+        // Call API to update user
+        const updatedUser = await api.put('/Auth/me', updateData);
+        
+        auth.showToast('تم تحديث الملف الشخصي بنجاح', 'success');
+        
+        // Update the displayed user info
+        document.getElementById('first-name').value = updatedUser.firstName;
+        document.getElementById('last-name').value = updatedUser.lastName;
+        
+    } catch (error) {
+        auth.showToast(error.message || 'حدث خطأ أثناء تحديث الملف الشخصي', 'danger');
+    } finally {
+        const updateBtn = document.getElementById('update-btn');
+        updateBtn.disabled = false;
+        updateBtn.innerHTML = '<i class="fas fa-save ms-1"></i> تحديث الملف';
+    }
+});
+    
+    // Logout button
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        auth.logout();
+    });
+}
     </script>
 </body>
 </html>

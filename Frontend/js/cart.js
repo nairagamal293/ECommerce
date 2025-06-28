@@ -1,145 +1,179 @@
 class CartService {
     constructor() {
-        this.api = api;
+        if (!window.api) {
+            throw new Error('خدمة API غير متاحة');
+        }
+        this.api = window.api;
     }
     
     async getCart() {
         try {
-            const userId = await this.getCurrentUserId();
-            return this.api.get(`/Cart?userId=${userId}`);
+            const response = await this.api.get('/Cart');
+            return response;
         } catch (error) {
+            console.error('خطأ في جلب عربة التسوق:', error);
             throw error;
         }
     }
     
     async addToCart(productId, quantity = 1) {
-        try {
-            const userId = await this.getCurrentUserId();
-            const response = await this.api.post('/Cart/items', {
-                productId,
-                quantity
-            });
-            return response;
-        } catch (error) {
-            throw error;
+    try {
+        const response = await this.api.post('/Cart/items', {
+            productId,
+            quantity
+        });
+        
+        // Update badge after adding to cart
+        if (window.badgeManager) {
+            await window.badgeManager.updateCartBadge();
         }
+        
+        return response;
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+        throw error;
     }
+}
     
     async updateCartItem(itemId, quantity) {
         try {
-            const userId = await this.getCurrentUserId();
             const response = await this.api.put(`/Cart/items/${itemId}`, {
-                quantity
+                quantity: quantity
             });
             return response;
         } catch (error) {
+            console.error('خطأ في تحديث عنصر العربة:', error);
             throw error;
         }
     }
     
     async removeFromCart(itemId) {
-        try {
-            const userId = await this.getCurrentUserId();
-            const response = await this.api.delete(`/Cart/items/${itemId}`);
-            return response;
-        } catch (error) {
-            throw error;
-        }
-    }
-    
-    async clearCart() {
-        try {
-            const userId = await this.getCurrentUserId();
-            const response = await this.api.delete('/Cart');
-            return response;
-        } catch (error) {
-            throw error;
-        }
-    }
-    
-    async getCurrentUserId() {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            throw new Error('User not authenticated');
+    try {
+        const response = await this.api.delete(`/Cart/items/${itemId}`);
+        
+        // Update badge after removing from cart
+        if (window.badgeManager) {
+            await window.badgeManager.updateCartBadge();
         }
         
-        // In a real app, you might decode the JWT to get the user ID
-        // For this demo, we'll use a placeholder
-        return 'current-user-id';
+        return response;
+    } catch (error) {
+        console.error('Error removing from cart:', error);
+        throw error;
     }
 }
 
-const cart = new CartService();
+async clearCart() {
+    try {
+        const response = await this.api.delete('/Cart');
+        
+        // Update badge after clearing cart
+        if (window.badgeManager) {
+            await window.badgeManager.updateCartBadge();
+        }
+        
+        return response;
+    } catch (error) {
+        console.error('Error clearing cart:', error);
+        throw error;
+    }
+}
+}
 
-// Export for use in other modules
-window.cart = cart;
+// Initialize and expose the cart service
+if (!window.cart) {
+    try {
+        window.cart = new CartService();
+        console.log('تم تهيئة خدمة العربة بنجاح', window.cart);
+    } catch (error) {
+        console.error('فشل في تهيئة خدمة العربة:', error);
+    }
+}
 
 // Cart Page Specific Code
 if (window.location.pathname.includes('cart.html')) {
     document.addEventListener('DOMContentLoaded', async () => {
-        auth.checkAuthState();
-        
+        // Check authentication state
+        if (typeof auth !== 'undefined' && auth.checkAuthState) {
+            auth.checkAuthState();
+        }
+
         try {
             // Show loading state
             const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `
-                <div class="text-center py-5">
-                    <div class="loading-spinner text-primary"></div>
-                    <p class="mt-2">Loading cart...</p>
-                </div>
-            `;
-            
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="loading-spinner text-primary"></div>
+                        <p class="mt-2">جاري تحميل عربة التسوق...</p>
+                    </div>
+                `;
+            }
+
+            // Verify cart service is available
+            if (typeof window.cart === 'undefined' || !window.cart.getCart) {
+                throw new Error('خدمة العربة غير متاحة');
+            }
+
             // Fetch cart
-            const cartData = await cart.getCart();
+            const cartData = await window.cart.getCart();
             
             // Render cart
             renderCart(cartData);
         } catch (error) {
-            auth.showToast(error.message, 'danger');
-            document.getElementById('main-content').innerHTML = `
-                <div class="alert alert-danger">
-                    ${error.message}
-                </div>
-            `;
+            console.error('خطأ في تهيئة العربة:', error);
+            if (typeof auth !== 'undefined' && auth.showToast) {
+                auth.showToast(error.message, 'danger');
+            }
+            
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div class="alert alert-danger">
+                        ${error.message || 'فشل تحميل عربة التسوق'}
+                    </div>
+                `;
+            }
         }
     });
-    
+
     function renderCart(cart) {
         const mainContent = document.getElementById('main-content');
-        
+        if (!mainContent) return;
+
         if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
             mainContent.innerHTML = `
                 <div class="text-center py-5">
-                    <h2 class="mb-3">Your cart is empty</h2>
-                    <p class="mb-4">Looks like you haven't added any items to your cart yet.</p>
-                    <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+                    <h2 class="mb-3">عربة التسوق فارغة</h2>
+                    <p class="mb-4">يبدو أنك لم تقم بإضافة أي عناصر إلى عربة التسوق بعد.</p>
+                    <a href="index.html" class="btn btn-primary">مواصلة التسوق</a>
                 </div>
             `;
             return;
         }
-        
+
         let html = `
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-header bg-white">
-                            <h4 class="mb-0">Shopping Cart</h4>
+                            <h4 class="mb-0">عربة التسوق</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>المنتج</th>
+                                            <th>السعر</th>
+                                            <th>الكمية</th>
+                                            <th>المجموع</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
         `;
-        
+
         cart.cartItems.forEach(item => {
             const price = item.discountedPrice || item.price;
             const total = price * item.quantity;
@@ -157,7 +191,7 @@ if (window.location.pathname.includes('cart.html')) {
                             </div>
                         </div>
                     </td>
-                    <td>$${price.toFixed(2)}</td>
+                    <td>${price.toFixed(2)} ر.س</td>
                     <td>
                         <div class="input-group" style="width: 120px;">
                             <button class="btn btn-outline-secondary minus-btn" 
@@ -173,7 +207,7 @@ if (window.location.pathname.includes('cart.html')) {
                                     data-item-id="${item.id}">+</button>
                         </div>
                     </td>
-                    <td>$${total.toFixed(2)}</td>
+                    <td>${total.toFixed(2)} ر.س</td>
                     <td>
                         <button class="btn btn-sm btn-outline-danger remove-item-btn" 
                                 data-item-id="${item.id}">
@@ -183,17 +217,17 @@ if (window.location.pathname.includes('cart.html')) {
                 </tr>
             `;
         });
-        
+
         html += `
                                     </tbody>
                                 </table>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-outline-danger me-2" id="clear-cart-btn">
-                                    <i class="fas fa-trash"></i> Clear Cart
+                                    <i class="fas fa-trash"></i> إفراغ العربة
                                 </button>
                                 <button class="btn btn-outline-secondary" id="continue-shopping-btn">
-                                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                                    <i class="fas fa-arrow-left"></i> مواصلة التسوق
                                 </button>
                             </div>
                         </div>
@@ -202,102 +236,139 @@ if (window.location.pathname.includes('cart.html')) {
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-header bg-white">
-                            <h4 class="mb-0">Order Summary</h4>
+                            <h4 class="mb-0">ملخص الطلب</h4>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
-                                <span>Subtotal</span>
-                                <span>$${cart.totalAmount.toFixed(2)}</span>
+                                <span>المجموع الفرعي</span>
+                                <span>${cart.totalAmount.toFixed(2)} ر.س</span>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
-                                <span>Shipping</span>
-                                <span>Free</span>
+                                <span>الشحن</span>
+                                <span>مجاني</span>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
-                                <span>Tax</span>
-                                <span>$0.00</span>
+                                <span>الضريبة</span>
+                                <span>0.00 ر.س</span>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between mb-3 fw-bold">
-                                <span>Total</span>
-                                <span>$${cart.totalAmount.toFixed(2)}</span>
+                                <span>الإجمالي</span>
+                                <span>${cart.totalAmount.toFixed(2)} ر.س</span>
                             </div>
                             <button class="btn btn-primary w-100" id="checkout-btn">
-                                Proceed to Checkout
+                                إتمام الشراء
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-        
+
         mainContent.innerHTML = html;
-        
+
         // Add event listeners
-        document.querySelectorAll('.minus-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                const itemId = e.target.getAttribute('data-item-id');
-                const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
-                let value = parseInt(input.value);
-                if (value > 1) {
-                    input.value = value - 1;
-                    await cart.updateCartItem(itemId, input.value);
-                    location.reload(); // Refresh to update totals
-                }
-            });
-        });
-        
-        document.querySelectorAll('.plus-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                const itemId = e.target.getAttribute('data-item-id');
-                const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
-                let value = parseInt(input.value);
-                input.value = value + 1;
-                await cart.updateCartItem(itemId, input.value);
-                location.reload(); // Refresh to update totals
-            });
-        });
-        
-        document.querySelectorAll('.quantity-input').forEach(input => {
-            input.addEventListener('change', async (e) => {
-                const itemId = e.target.getAttribute('data-item-id');
-                let value = parseInt(e.target.value);
-                if (value < 1) value = 1;
-                e.target.value = value;
-                await cart.updateCartItem(itemId, value);
-                location.reload(); // Refresh to update totals
-            });
-        });
-        
-        document.querySelectorAll('.remove-item-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                const itemId = e.target.getAttribute('data-item-id');
-                try {
-                    await cart.removeFromCart(itemId);
-                    auth.showToast('Item removed from cart', 'success');
-                    location.reload();
-                } catch (error) {
-                    auth.showToast(error.message, 'danger');
-                }
-            });
-        });
-        
-        document.getElementById('clear-cart-btn').addEventListener('click', async () => {
+        document.getElementById('clear-cart-btn')?.addEventListener('click', async () => {
             try {
-                await cart.clearCart();
-                auth.showToast('Cart cleared', 'success');
-                location.reload();
+                await window.cart.clearCart();
+                if (auth?.showToast) auth.showToast('تم تفريغ العربة بنجاح', 'success');
+                const cartData = await window.cart.getCart();
+                renderCart(cartData);
             } catch (error) {
-                auth.showToast(error.message, 'danger');
+                console.error('خطأ في تفريغ العربة:', error);
+                if (auth?.showToast) auth.showToast(error.message, 'danger');
             }
         });
-        
-        document.getElementById('continue-shopping-btn').addEventListener('click', () => {
+
+        document.getElementById('continue-shopping-btn')?.addEventListener('click', () => {
             window.location.href = 'index.html';
         });
-        
-        document.getElementById('checkout-btn').addEventListener('click', () => {
+
+        document.getElementById('checkout-btn')?.addEventListener('click', () => {
             window.location.href = 'checkout.html';
         });
     }
+
+    // Unified event delegation for all cart interactions
+    document.addEventListener('click', async (e) => {
+        if (!window.cart) {
+            console.error('خدمة العربة غير متاحة');
+            return;
+        }
+
+        // Handle minus button
+        if (e.target.closest('.minus-btn')) {
+            const button = e.target.closest('.minus-btn');
+            const itemId = button.getAttribute('data-item-id');
+            const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
+            let value = parseInt(input.value);
+            
+            if (value > 1) {
+                input.value = value - 1;
+                try {
+                    await window.cart.updateCartItem(itemId, input.value);
+                    const cartData = await window.cart.getCart();
+                    renderCart(cartData);
+                } catch (error) {
+                    console.error('خطأ في التحديث:', error);
+                    if (auth?.showToast) auth.showToast(error.message, 'danger');
+                }
+            }
+        }
+        
+        // Handle plus button
+        else if (e.target.closest('.plus-btn')) {
+            const button = e.target.closest('.plus-btn');
+            const itemId = button.getAttribute('data-item-id');
+            const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
+            let value = parseInt(input.value);
+            input.value = value + 1;
+            try {
+                await window.cart.updateCartItem(itemId, input.value);
+                const cartData = await window.cart.getCart();
+                renderCart(cartData);
+            } catch (error) {
+                console.error('خطأ في التحديث:', error);
+                if (auth?.showToast) auth.showToast(error.message, 'danger');
+            }
+        }
+        
+        // Handle remove item button
+        else if (e.target.closest('.remove-item-btn')) {
+            const button = e.target.closest('.remove-item-btn');
+            const itemId = button.getAttribute('data-item-id');
+            try {
+                await window.cart.removeFromCart(itemId);
+                if (auth?.showToast) auth.showToast('تمت إزالة العنصر بنجاح', 'success');
+                const cartData = await window.cart.getCart();
+                renderCart(cartData);
+            } catch (error) {
+                console.error('خطأ في الإزالة:', error);
+                if (auth?.showToast) auth.showToast(error.message, 'danger');
+            }
+        }
+    });
+
+    // Handle quantity input changes
+    document.addEventListener('change', async (e) => {
+        if (e.target.classList.contains('quantity-input')) {
+            const input = e.target;
+            const itemId = input.getAttribute('data-item-id');
+            let value = parseInt(input.value);
+            
+            if (isNaN(value) || value < 1) {
+                value = 1;
+                input.value = 1;
+            }
+            
+            try {
+                await window.cart.updateCartItem(itemId, value);
+                const cartData = await window.cart.getCart();
+                renderCart(cartData);
+            } catch (error) {
+                console.error('خطأ في التحديث:', error);
+                if (auth?.showToast) auth.showToast(error.message, 'danger');
+            }
+        }
+    });
 }

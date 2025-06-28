@@ -1,6 +1,22 @@
 {
   "Files": [
     {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg",
+      "PackagePath": "staticwebassets\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\039cf994-8687-427c-ad37-8817edf547b1.png",
+      "PackagePath": "staticwebassets\\products\\039cf994-8687-427c-ad37-8817edf547b1.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png",
+      "PackagePath": "staticwebassets\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png",
+      "PackagePath": "staticwebassets\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png"
+    },
+    {
       "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\14d132c4-865c-4dfc-b61a-02e966fbf664.jpeg",
       "PackagePath": "staticwebassets\\products\\14d132c4-865c-4dfc-b61a-02e966fbf664.jpeg"
     },
@@ -13,12 +29,24 @@
       "PackagePath": "staticwebassets\\products\\4b469ad1-0c55-498c-8aa6-bee786857314.jpeg"
     },
     {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png",
+      "PackagePath": "staticwebassets\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png",
+      "PackagePath": "staticwebassets\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png"
+    },
+    {
       "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png",
       "PackagePath": "staticwebassets\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png"
     },
     {
       "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\85eb32cc-bcec-4b2e-918a-48ade3dab81b.jpeg",
       "PackagePath": "staticwebassets\\products\\85eb32cc-bcec-4b2e-918a-48ade3dab81b.jpeg"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png",
+      "PackagePath": "staticwebassets\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png"
     },
     {
       "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8b6eb480-1070-4108-8db0-c7dc013741e9.jpeg",
@@ -45,8 +73,16 @@
       "PackagePath": "staticwebassets\\products\\c80e1ebe-5ad8-474e-ad18-c39be4d22abf.jpeg"
     },
     {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png",
+      "PackagePath": "staticwebassets\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png"
+    },
+    {
       "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png",
       "PackagePath": "staticwebassets\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png"
+    },
+    {
+      "Id": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png",
+      "PackagePath": "staticwebassets\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ecommerce.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

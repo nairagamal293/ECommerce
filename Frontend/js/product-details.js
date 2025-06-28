@@ -62,15 +62,14 @@ async function renderProductDetails(product) {
             </div>
             
             <div class="product-actions d-flex gap-3">
-                <div class="quantity-selector d-flex align-items-center mb-3">
-                    <button class="btn btn-outline-secondary quantity-btn" id="decrease-qty">
+                <div class="input-group quantity-control" style="width: 150px;">
+                    <button class="btn btn-outline-secondary minus-btn" type="button">
                         <i class="fas fa-minus"></i>
                     </button>
                     <input type="number" id="product-quantity" 
-                           min="1" max="${product.quantityInStock}" 
-                           value="1" class="form-control text-center mx-2" 
-                           style="width: 60px;">
-                    <button class="btn btn-outline-secondary quantity-btn" id="increase-qty">
+                           class="form-control text-center" 
+                           value="1" min="1" max="${product.quantityInStock}">
+                    <button class="btn btn-outline-secondary plus-btn" type="button">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
@@ -83,39 +82,75 @@ async function renderProductDetails(product) {
             </div>
         </div>
     `;
+
+    // Get references to the quantity elements
+    const quantityInput = document.getElementById('product-quantity');
+    const minusBtn = document.querySelector('.minus-btn');
+    const plusBtn = document.querySelector('.plus-btn');
     
-    // Setup quantity buttons
-    document.getElementById('decrease-qty').addEventListener('click', () => {
-        const input = document.getElementById('product-quantity');
-        if (parseInt(input.value) > 1) {
-            input.value = parseInt(input.value) - 1;
+    // Quantity control handlers
+    minusBtn.addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+            quantityInput.value = value - 1;
         }
     });
     
-    document.getElementById('increase-qty').addEventListener('click', () => {
-        const input = document.getElementById('product-quantity');
-        if (parseInt(input.value) < product.quantityInStock) {
-            input.value = parseInt(input.value) + 1;
+    plusBtn.addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if (value < product.quantityInStock) {
+            quantityInput.value = value + 1;
         }
     });
     
-    // Setup add to cart button
+    quantityInput.addEventListener('change', () => {
+        let value = parseInt(quantityInput.value);
+        if (isNaN(value)) {
+            quantityInput.value = 1;
+        } else if (value < 1) {
+            quantityInput.value = 1;
+        } else if (value > product.quantityInStock) {
+            quantityInput.value = product.quantityInStock;
+        }
+    });
+    
+    // Add to cart button with login check
     document.getElementById('add-to-cart-btn').addEventListener('click', async () => {
-        const quantity = parseInt(document.getElementById('product-quantity').value);
+        if (!auth.getAuthToken()) {
+            auth.showLoginAlert('cart');
+            return;
+        }
+        
+        const quantity = parseInt(quantityInput.value);
         try {
             await cart.addToCart(product.id, quantity);
             auth.showToast('تمت إضافة المنتج إلى السلة بنجاح', 'success');
+            
+            // Update cart badge
+            if (window.badgeManager) {
+                await badgeManager.updateCartBadge();
+            }
         } catch (error) {
             console.error('Error adding to cart:', error);
             auth.showToast(error.message, 'danger');
         }
     });
     
-    // Setup wishlist button
+    // Add to wishlist button with login check
     document.getElementById('add-to-wishlist-btn').addEventListener('click', async () => {
+        if (!auth.getAuthToken()) {
+            auth.showLoginAlert('wishlist');
+            return;
+        }
+        
         try {
             await wishlist.addToWishlist(product.id);
             auth.showToast('تمت إضافة المنتج إلى المفضلة بنجاح', 'success');
+            
+            // Update wishlist badge
+            if (window.badgeManager) {
+                await badgeManager.updateWishlistBadge();
+            }
         } catch (error) {
             console.error('Error adding to wishlist:', error);
             auth.showToast(error.message, 'danger');

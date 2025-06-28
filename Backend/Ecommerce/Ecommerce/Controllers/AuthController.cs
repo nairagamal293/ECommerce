@@ -48,5 +48,13 @@ namespace Ecommerce.Controllers
             var user = await _authService.GetCurrentUserAsync(userId);
             return Ok(user);
         }
+        [HttpPut("me")]
+        [Authorize]
+        public async Task<ActionResult<UserReadDto>> UpdateUser(UserUpdateDto userUpdateDto)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var updatedUser = await _authService.UpdateUserAsync(userId, userUpdateDto);
+            return Ok(updatedUser);
+        }
     }
 }

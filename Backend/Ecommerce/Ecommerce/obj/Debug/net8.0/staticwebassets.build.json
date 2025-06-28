@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zuRAV3Rkq45sBE3kCIVCqnc7G2pxpMEVDv5vttunAno=",
+  "Hash": "dg/SnnKZ64aWe+jtLgmh0Dxe8h5NQhGgpNSaW2okmBc=",
   "Source": "Ecommerce",
   "BasePath": "_content/Ecommerce",
   "Mode": "Default",
@@ -16,6 +16,90 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/01b4eb2c-2f27-4c98-9064-5189b0f8796b#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ofpts65li6",
+      "Integrity": "BCrjbMoWgZ0ASYhtl+jMFHHXwURScAeaZd3lnfzsotQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\039cf994-8687-427c-ad37-8817edf547b1.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/039cf994-8687-427c-ad37-8817edf547b1#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zzmjkyld5u",
+      "Integrity": "0RhFee24HTzdQnMEy4udD6hpGXivNyxo4wSEtw7a9ug=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\039cf994-8687-427c-ad37-8817edf547b1.png"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/0b33f664-b98c-4de3-b3f4-abb18d966256#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wz0e58yjs4",
+      "Integrity": "jCEaQ7HC/msweB8eC3BmKAaq68PiNvluUUzeIRVlfvQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/1183e602-723a-4f7c-8f04-90f59eef3b05#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vhlgh2jryy",
+      "Integrity": "LUZScryx0dLk9TEaTqbQN+vFMl0ZMhvMmcGNjvWQ0o4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png"
+    },
     {
       "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\14d132c4-865c-4dfc-b61a-02e966fbf664.jpeg",
       "SourceId": "Ecommerce",
@@ -80,6 +164,48 @@
       "OriginalItemSpec": "wwwroot\\products\\4b469ad1-0c55-498c-8aa6-bee786857314.jpeg"
     },
     {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/58917f4f-335d-49c5-b51f-7e2d3668149e#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eqe3ibmhq8",
+      "Integrity": "qpQTV/T4WuvVBJR4kzbGwGQIR05xlpC3x1M00RUbz2Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/628185b7-d41a-43bc-b1e3-d051315927ef#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7nbf6io76z",
+      "Integrity": "TYnccYYnYwqVSYmdbjQN1e2XAQTr6DxpqVXdgFzDazw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png"
+    },
+    {
       "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png",
       "SourceId": "Ecommerce",
       "SourceType": "Discovered",
@@ -120,6 +246,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\products\\85eb32cc-bcec-4b2e-918a-48ade3dab81b.jpeg"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/8a1230ae-5119-4675-b084-7523a4d0f8a9#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dgwc2h4hwe",
+      "Integrity": "syoYYODj9kahBaN+kr79fhY41wLw+k/+BIYA9AfoAcw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png"
     },
     {
       "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8b6eb480-1070-4108-8db0-c7dc013741e9.jpeg",
@@ -248,6 +395,27 @@
       "OriginalItemSpec": "wwwroot\\products\\c80e1ebe-5ad8-474e-ad18-c39be4d22abf.jpeg"
     },
     {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "252pmjvq65",
+      "Integrity": "Fklv1dVeYjkVJfwKJcTcWiVfTpry8997Q/wHUCURPB4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png"
+    },
+    {
       "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png",
       "SourceId": "Ecommerce",
       "SourceType": "Discovered",
@@ -267,9 +435,358 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png"
+    },
+    {
+      "Identity": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png",
+      "SourceId": "Ecommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\",
+      "BasePath": "_content/Ecommerce",
+      "RelativePath": "products/e948ade5-76cf-4c9f-8755-2918019651c7#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4sjb3bxmkm",
+      "Integrity": "5Ldg5FBTlwAplQjZquwwDEMuknu0dbVDLT1QG+ZwbPQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "products/01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "20089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BCrjbMoWgZ0ASYhtl+jMFHHXwURScAeaZd3lnfzsotQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:11:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BCrjbMoWgZ0ASYhtl+jMFHHXwURScAeaZd3lnfzsotQ="
+        }
+      ]
+    },
+    {
+      "Route": "products/01b4eb2c-2f27-4c98-9064-5189b0f8796b.ofpts65li6.jpeg",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "20089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BCrjbMoWgZ0ASYhtl+jMFHHXwURScAeaZd3lnfzsotQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:11:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ofpts65li6"
+        },
+        {
+          "Name": "label",
+          "Value": "products/01b4eb2c-2f27-4c98-9064-5189b0f8796b.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BCrjbMoWgZ0ASYhtl+jMFHHXwURScAeaZd3lnfzsotQ="
+        }
+      ]
+    },
+    {
+      "Route": "products/039cf994-8687-427c-ad37-8817edf547b1.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\039cf994-8687-427c-ad37-8817edf547b1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0RhFee24HTzdQnMEy4udD6hpGXivNyxo4wSEtw7a9ug=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:11:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0RhFee24HTzdQnMEy4udD6hpGXivNyxo4wSEtw7a9ug="
+        }
+      ]
+    },
+    {
+      "Route": "products/039cf994-8687-427c-ad37-8817edf547b1.zzmjkyld5u.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\039cf994-8687-427c-ad37-8817edf547b1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0RhFee24HTzdQnMEy4udD6hpGXivNyxo4wSEtw7a9ug=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:11:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zzmjkyld5u"
+        },
+        {
+          "Name": "label",
+          "Value": "products/039cf994-8687-427c-ad37-8817edf547b1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0RhFee24HTzdQnMEy4udD6hpGXivNyxo4wSEtw7a9ug="
+        }
+      ]
+    },
+    {
+      "Route": "products/0b33f664-b98c-4de3-b3f4-abb18d966256.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "136674"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jCEaQ7HC/msweB8eC3BmKAaq68PiNvluUUzeIRVlfvQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:12:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jCEaQ7HC/msweB8eC3BmKAaq68PiNvluUUzeIRVlfvQ="
+        }
+      ]
+    },
+    {
+      "Route": "products/0b33f664-b98c-4de3-b3f4-abb18d966256.wz0e58yjs4.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\0b33f664-b98c-4de3-b3f4-abb18d966256.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "136674"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jCEaQ7HC/msweB8eC3BmKAaq68PiNvluUUzeIRVlfvQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:12:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wz0e58yjs4"
+        },
+        {
+          "Name": "label",
+          "Value": "products/0b33f664-b98c-4de3-b3f4-abb18d966256.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jCEaQ7HC/msweB8eC3BmKAaq68PiNvluUUzeIRVlfvQ="
+        }
+      ]
+    },
+    {
+      "Route": "products/1183e602-723a-4f7c-8f04-90f59eef3b05.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "193810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LUZScryx0dLk9TEaTqbQN+vFMl0ZMhvMmcGNjvWQ0o4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:22:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LUZScryx0dLk9TEaTqbQN+vFMl0ZMhvMmcGNjvWQ0o4="
+        }
+      ]
+    },
+    {
+      "Route": "products/1183e602-723a-4f7c-8f04-90f59eef3b05.vhlgh2jryy.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\1183e602-723a-4f7c-8f04-90f59eef3b05.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "193810"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LUZScryx0dLk9TEaTqbQN+vFMl0ZMhvMmcGNjvWQ0o4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:22:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vhlgh2jryy"
+        },
+        {
+          "Name": "label",
+          "Value": "products/1183e602-723a-4f7c-8f04-90f59eef3b05.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LUZScryx0dLk9TEaTqbQN+vFMl0ZMhvMmcGNjvWQ0o4="
+        }
+      ]
+    },
     {
       "Route": "products/14d132c4-865c-4dfc-b61a-02e966fbf664.jpeg",
       "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\14d132c4-865c-4dfc-b61a-02e966fbf664.jpeg",
@@ -517,6 +1034,170 @@
       ]
     },
     {
+      "Route": "products/58917f4f-335d-49c5-b51f-7e2d3668149e.eqe3ibmhq8.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "88593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qpQTV/T4WuvVBJR4kzbGwGQIR05xlpC3x1M00RUbz2Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eqe3ibmhq8"
+        },
+        {
+          "Name": "label",
+          "Value": "products/58917f4f-335d-49c5-b51f-7e2d3668149e.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qpQTV/T4WuvVBJR4kzbGwGQIR05xlpC3x1M00RUbz2Q="
+        }
+      ]
+    },
+    {
+      "Route": "products/58917f4f-335d-49c5-b51f-7e2d3668149e.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\58917f4f-335d-49c5-b51f-7e2d3668149e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "88593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qpQTV/T4WuvVBJR4kzbGwGQIR05xlpC3x1M00RUbz2Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qpQTV/T4WuvVBJR4kzbGwGQIR05xlpC3x1M00RUbz2Q="
+        }
+      ]
+    },
+    {
+      "Route": "products/628185b7-d41a-43bc-b1e3-d051315927ef.7nbf6io76z.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "216587"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TYnccYYnYwqVSYmdbjQN1e2XAQTr6DxpqVXdgFzDazw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:14:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7nbf6io76z"
+        },
+        {
+          "Name": "label",
+          "Value": "products/628185b7-d41a-43bc-b1e3-d051315927ef.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TYnccYYnYwqVSYmdbjQN1e2XAQTr6DxpqVXdgFzDazw="
+        }
+      ]
+    },
+    {
+      "Route": "products/628185b7-d41a-43bc-b1e3-d051315927ef.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\628185b7-d41a-43bc-b1e3-d051315927ef.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "216587"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TYnccYYnYwqVSYmdbjQN1e2XAQTr6DxpqVXdgFzDazw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:14:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TYnccYYnYwqVSYmdbjQN1e2XAQTr6DxpqVXdgFzDazw="
+        }
+      ]
+    },
+    {
       "Route": "products/64f50ff9-b06e-4236-bc9d-8444c3ddefea.dvlmhyo9sd.png",
       "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\64f50ff9-b06e-4236-bc9d-8444c3ddefea.png",
       "Selectors": [],
@@ -677,6 +1358,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-RqFlLHJ3RDUfOw/d9DlDqdlWbI/FwoZw0rq5qN43/GA="
+        }
+      ]
+    },
+    {
+      "Route": "products/8a1230ae-5119-4675-b084-7523a4d0f8a9.dgwc2h4hwe.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146530"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"syoYYODj9kahBaN+kr79fhY41wLw+k/+BIYA9AfoAcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:23:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dgwc2h4hwe"
+        },
+        {
+          "Name": "label",
+          "Value": "products/8a1230ae-5119-4675-b084-7523a4d0f8a9.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-syoYYODj9kahBaN+kr79fhY41wLw+k/+BIYA9AfoAcw="
+        }
+      ]
+    },
+    {
+      "Route": "products/8a1230ae-5119-4675-b084-7523a4d0f8a9.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\8a1230ae-5119-4675-b084-7523a4d0f8a9.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146530"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"syoYYODj9kahBaN+kr79fhY41wLw+k/+BIYA9AfoAcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:23:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-syoYYODj9kahBaN+kr79fhY41wLw+k/+BIYA9AfoAcw="
         }
       ]
     },
@@ -1173,6 +1936,88 @@
       ]
     },
     {
+      "Route": "products/d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.252pmjvq65.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "169017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Fklv1dVeYjkVJfwKJcTcWiVfTpry8997Q/wHUCURPB4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:25:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "252pmjvq65"
+        },
+        {
+          "Name": "label",
+          "Value": "products/d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Fklv1dVeYjkVJfwKJcTcWiVfTpry8997Q/wHUCURPB4="
+        }
+      ]
+    },
+    {
+      "Route": "products/d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\d52ba2a4-c9c2-46f0-a7a2-29bf9deb70a2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "169017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Fklv1dVeYjkVJfwKJcTcWiVfTpry8997Q/wHUCURPB4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:25:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Fklv1dVeYjkVJfwKJcTcWiVfTpry8997Q/wHUCURPB4="
+        }
+      ]
+    },
+    {
       "Route": "products/df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.ioaxp5nrim.png",
       "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\df2d5876-5660-4b6d-b0f8-bbfbb2da69e0.png",
       "Selectors": [],
@@ -1251,6 +2096,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-UtEyYCw6BrMvISUtKvljR3OcrPluQFr/9v9C3izUlf4="
+        }
+      ]
+    },
+    {
+      "Route": "products/e948ade5-76cf-4c9f-8755-2918019651c7.4sjb3bxmkm.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "185539"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Ldg5FBTlwAplQjZquwwDEMuknu0dbVDLT1QG+ZwbPQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:24:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4sjb3bxmkm"
+        },
+        {
+          "Name": "label",
+          "Value": "products/e948ade5-76cf-4c9f-8755-2918019651c7.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Ldg5FBTlwAplQjZquwwDEMuknu0dbVDLT1QG+ZwbPQ="
+        }
+      ]
+    },
+    {
+      "Route": "products/e948ade5-76cf-4c9f-8755-2918019651c7.png",
+      "AssetFile": "D:\\Naira\\Full E commerce\\Backend\\Ecommerce\\Ecommerce\\wwwroot\\products\\e948ade5-76cf-4c9f-8755-2918019651c7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "185539"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Ldg5FBTlwAplQjZquwwDEMuknu0dbVDLT1QG+ZwbPQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Jun 2025 13:24:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Ldg5FBTlwAplQjZquwwDEMuknu0dbVDLT1QG+ZwbPQ="
         }
       ]
     }

@@ -36,39 +36,117 @@ function checkAuthState() {
     }
 }
 
+function showLoginAlert(action) {
+    // Create a modal or alert to prompt login
+    const alertHtml = `
+        <div class="modal fade" id="loginAlertModal" tabindex="-1" aria-labelledby="loginAlertModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginAlertModalLabel">يجب تسجيل الدخول</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>يجب عليك تسجيل الدخول أولاً لإضافة المنتجات إلى ${action === 'cart' ? 'سلة التسوق' : 'المفضلة'}.</p>
+                        <p>هل ترغب في تسجيل الدخول الآن؟</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لاحقاً</button>
+                        <a href="login.html?redirect=${encodeURIComponent(window.location.pathname)}" class="btn btn-primary">تسجيل الدخول</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add to body and show
+    document.body.insertAdjacentHTML('beforeend', alertHtml);
+    const modal = new bootstrap.Modal(document.getElementById('loginAlertModal'));
+    modal.show();
+    
+    // Remove modal after it's hidden
+    document.getElementById('loginAlertModal').addEventListener('hidden.bs.modal', function() {
+        this.remove();
+    });
+}
+
+
 
 async function handleLogin(email, password) {
     try {
+        // Validate inputs
+        if (!email || !password) {
+            throw new Error('البريد الإلكتروني وكلمة المرور مطلوبان');
+        }
+
+        // Show loading state
+        const loginBtn = document.getElementById('login-btn');
+        if (loginBtn) {
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> جاري تسجيل الدخول...';
+        }
+
+        // Make login request
         const response = await fetch(`${AUTH_API_BASE}/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({ email, password })
         });
-        
+
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message || 'Login failed');
+            throw new Error(errorData.message || 'فشل تسجيل الدخول: بيانات الاعتماد غير صحيحة');
         }
-        
+
         const data = await response.json();
+        
+        // Store token
         localStorage.setItem('token', data.token);
-        showToast('Login successful', 'success');
         
-        // Decode token immediately for quick redirect
+        // Decode token to get basic user info
         const tokenPayload = JSON.parse(atob(data.token.split('.')[1]));
-        console.log('Login token payload:', tokenPayload);
+        console.log('User logged in:', tokenPayload);
+
+        // Show success message
+        showToast('تم تسجيل الدخول بنجاح', 'success');
+
+        // Update UI state
+        checkAuthState();
         
-        if (tokenPayload.role === 'Admin') {
-            window.location.href = 'dashboard.html';
-        } else {
-            window.location.href = 'index.html';
+        // Update cart and wishlist badges
+        if (window.badgeManager) {
+            await badgeManager.updateCartBadge();
+            await badgeManager.updateWishlistBadge();
         }
-        
+
+        // Redirect based on role
+        setTimeout(() => {
+            if (tokenPayload.role === 'Admin') {
+                window.location.href = 'dashboard.html';
+            } else {
+                // Check if we have a redirect URL in query params
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect') || 'index.html';
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+
         return true;
     } catch (error) {
-        showToast(error.message, 'danger');
+        console.error('Login error:', error);
+        
+        // Reset button state
+        const loginBtn = document.getElementById('login-btn');
+        if (loginBtn) {
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'تسجيل الدخول';
+        }
+        
+        // Show error message
+        showToast(error.message || 'حدث خطأ أثناء تسجيل الدخول', 'danger');
         return false;
     }
 }
@@ -137,6 +215,7 @@ async function handleRegister(userData) {
 function handleLogout() {
     localStorage.removeItem('token');
     showToast('Logged out successfully', 'success');
+    triggerAuthStateChange();
     setTimeout(() => {
         window.location.href = 'index.html';
     }, 1000);
@@ -180,11 +259,16 @@ function createToastContainer() {
     return container;
 }
 
+function triggerAuthStateChange() {
+    const event = new Event('authStateChanged');
+    document.dispatchEvent(event);
+}
 // Export functions for use in other modules
 // At the end of auth.js, update the exports:
 window.auth = {
     handleLogin,
     handleRegister,
+    showLoginAlert,
     handleLogout,
     getAuthToken,
     checkAuthState,

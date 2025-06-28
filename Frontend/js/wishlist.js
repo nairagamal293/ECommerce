@@ -21,36 +21,54 @@ class WishlistService {
     }
     
     async addToWishlist(productId) {
-        try {
-            const response = await this.api.post('/Wishlist/items', {
-                productId: parseInt(productId)
-            });
-            return response;
-        } catch (error) {
-            console.error('Error adding to wishlist:', error);
-            throw error;
+    try {
+        const response = await this.api.post('/Wishlist/items', {
+            productId: parseInt(productId)
+        });
+        
+        // Update badge after adding to wishlist
+        if (window.badgeManager) {
+            await window.badgeManager.updateWishlistBadge();
         }
+        
+        return response;
+    } catch (error) {
+        console.error('Error adding to wishlist:', error);
+        throw error;
     }
-    
-    async removeFromWishlist(itemId) {
-        try {
-            const response = await this.api.delete(`/Wishlist/items/${itemId}`);
-            return response;
-        } catch (error) {
-            console.error('Error removing from wishlist:', error);
-            throw new Error(error.message || 'فشل إزالة العنصر من المفضلة');
-        }
-    }
+}
 
-    async clearWishlist() {
-        try {
-            const response = await this.api.delete('/Wishlist');
-            return response;
-        } catch (error) {
-            console.error('Error clearing wishlist:', error);
-            throw new Error(error.message || 'فشل إفراغ قائمة المفضلة');
+async removeFromWishlist(itemId) {
+    try {
+        const response = await this.api.delete(`/Wishlist/items/${itemId}`);
+        
+        // Update badge after removing from wishlist
+        if (window.badgeManager) {
+            await window.badgeManager.updateWishlistBadge();
         }
+        
+        return response;
+    } catch (error) {
+        console.error('Error removing from wishlist:', error);
+        throw error;
     }
+}
+
+async clearWishlist() {
+    try {
+        const response = await this.api.delete('/Wishlist');
+        
+        // Update badge after clearing wishlist
+        if (window.badgeManager) {
+            await window.badgeManager.updateWishlistBadge();
+        }
+        
+        return response;
+    } catch (error) {
+        console.error('Error clearing wishlist:', error);
+        throw error;
+    }
+}
     
     async isProductInWishlist(productId) {
         try {
@@ -64,6 +82,7 @@ class WishlistService {
 }
 
 const wishlist = new WishlistService();
+
 
 // Wishlist Page Specific Code
 if (window.location.pathname.includes('wishlist.html')) {

@@ -34,26 +34,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 function renderCategoriesSidebar(categories, products, wishlistItems) {
     const mainContent = document.getElementById('main-content');
     
-    // Create the sidebar structure
+    // Create the sidebar structure with proper grid layout
     const sidebarHtml = `
         <div class="row">
             <div class="col-lg-3 mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">التصنيفات</h5>
+                <div class="category-sidebar">
+                    <div class="category-header">
+                        <i class="fas fa-tags"></i>
+                        <span>تصنيفات المنتجات</span>
                     </div>
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush" id="categories-list">
-                            <li class="list-group-item active" data-category-id="all">
-                                <i class="fas fa-list me-2"></i> جميع المنتجات
+                    <ul class="category-list" id="categories-list">
+                        <li class="category-item active" data-category-id="all">
+                            <i class="fas fa-list"></i>
+                            <span>جميع المنتجات</span>
+                            <span class="category-count">${products.length}</span>
+                        </li>
+                        ${categories.map(category => {
+                            const count = products.filter(p => p.categoryId == category.id).length;
+                            return `
+                            <li class="category-item" data-category-id="${category.id}">
+                                <i class="fas fa-tag"></i>
+                                <span>${category.name}</span>
+                                <span class="category-count">${count}</span>
                             </li>
-                            ${categories.map(category => `
-                                <li class="list-group-item" data-category-id="${category.id}">
-                                    <i class="fas fa-tag me-2"></i> ${category.name}
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
+                            `;
+                        }).join('')}
+                    </ul>
                 </div>
             </div>
             <div class="col-lg-9">
@@ -207,14 +213,20 @@ function renderFilteredProducts(products, wishlistItems) {
         productsGrid.appendChild(productCard);
         
         // Add event listeners
-        productCard.querySelector('.btn-add-to-cart').addEventListener('click', async () => {
-            try {
-                await cart.addToCart(product.id, 1);
-                auth.showToast('تم إضافة المنتج إلى السلة', 'success');
-            } catch (error) {
-                auth.showToast(error.message, 'danger');
-            }
-        });
+        productCard.querySelector('.btn-add-to-cart').addEventListener('click', async (e) => {
+    e.stopPropagation();
+    if (!auth.getAuthToken()) {
+        showLoginAlert('cart');
+        return;
+    }
+    
+    try {
+        await cart.addToCart(product.id, 1);
+        auth.showToast('تم إضافة المنتج إلى السلة', 'success');
+    } catch (error) {
+        auth.showToast(error.message, 'danger');
+    }
+});
         
         const wishlistBtn = productCard.querySelector('.btn-add-to-wishlist');
         wishlistBtn.addEventListener('click', async () => {

@@ -94,6 +94,39 @@ namespace Ecommerce.Services
             return _mapper.Map<IEnumerable<UserReadDto>>(users);
         }
 
+        public async Task<UserReadDto> UpdateUserAsync(string userId, UserUpdateDto userUpdateDto)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new KeyNotFoundException("User not found");
+            }
+
+            // Update basic info
+            user.FirstName = userUpdateDto.FirstName;
+            user.LastName = userUpdateDto.LastName;
+
+            // Update password if provided
+            if (!string.IsNullOrEmpty(userUpdateDto.Password))
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
+
+                if (!result.Succeeded)
+                {
+                    throw new ApplicationException(string.Join(", ", result.Errors.Select(e => e.Description)));
+                }
+            }
+
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+            {
+                throw new ApplicationException(string.Join(", ", updateResult.Errors.Select(e => e.Description)));
+            }
+
+            return _mapper.Map<UserReadDto>(user);
+        }
+
         private async Task<string> GenerateJwtToken(User user)
         {
             var claims = new List<Claim>

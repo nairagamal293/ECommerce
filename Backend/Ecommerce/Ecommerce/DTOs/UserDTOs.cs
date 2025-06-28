@@ -42,4 +42,18 @@ namespace Ecommerce.DTOs
         public string LastName { get; set; }
         public DateTime CreatedAt { get; set; }
     }
+    public class UserUpdateDto
+    {
+        [Required]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        [DataType(DataType.Password)]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters long")]
+        public string Password { get; set; }
+    }
 }

@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revamp Auto  - سلة التسوق</title>
+    <title>Revamp Auto - سلة التسوق</title>
     <!-- Bootstrap 5 RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-rtl@5.3.0/dist/css/bootstrap-rtl.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Google Fonts - Tajawal for Arabic -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
@@ -30,7 +27,7 @@
         }
         
         body {
-             font-family: 'Cairo', sans-serif;
+            font-family: 'Cairo', sans-serif;
             background-color: var(--light);
             color: #06090d;
             overflow-x: hidden;
@@ -85,6 +82,14 @@
             width: 100%;
         }
         
+        /* Badge styles */
+        .nav-link .badge {
+            font-size: 0.6rem;
+            padding: 0.25rem 0.4rem;
+            min-width: 1.25rem;
+            line-height: 1;
+        }
+
         /* Main Content */
         main {
             padding: 6rem 0 4rem;
@@ -276,67 +281,74 @@
 </head>
 <body>
     <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
-                <span style="margin-right: 10px;">Revamp Auto </span>
+                <span style="margin-right: 10px;">Revamp Auto</span>
             </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-home"></i> الرئيسية
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="product.html">
-                        <i class="fas fa-box-open"></i> المنتجات
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="cart.html">
-                        <i class="fas fa-shopping-cart"></i> عربة التسوق
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="wishlist.html">
-                        <i class="fas fa-heart"></i> المفضلة
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="orders.html">
-                        <i class="fas fa-box-open"></i> الطلبات
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item" id="auth-links">
-                    <a class="nav-link" href="login.html">
-                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-                    </a>
-                    <a class="nav-link" href="register.html">
-                        <i class="fas fa-user-plus"></i> إنشاء حساب
-                    </a>
-                </li>
-                <li class="nav-item d-none" id="profile-link">
-                    <a class="nav-link" href="profile.html">
-                        <i class="fas fa-user-circle"></i> الملف الشخصي
-                    </a>
-                </li>
-                <li class="nav-item d-none" id="logout-link">
-                    <a class="nav-link" href="#" id="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                    </a>
-                </li>
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">
+                            <i class="fas fa-box-open"></i> المنتجات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> عربة التسوق
+                            <span id="cart-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+                                  style="right: -5px;">
+                                0
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="wishlist.html">
+                            <i class="fas fa-heart"></i> المفضلة
+                            <span id="wishlist-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+                                  style="right: -5px;">
+                                0
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">
+                            <i class="fas fa-box-open"></i> الطلبات
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item" id="auth-links">
+                        <a class="nav-link" href="login.html">
+                            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                        </a>
+                        <a class="nav-link" href="register.html">
+                            <i class="fas fa-user-plus"></i> إنشاء حساب
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" id="profile-link">
+                        <a class="nav-link" href="profile.html">
+                            <i class="fas fa-user-circle"></i> الملف الشخصي
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" id="logout-link">
+                        <a class="nav-link" href="#" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
 
     <!-- Main Content -->
     <main class="container" id="main-content">
@@ -348,10 +360,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                        <a class="navbar-brand" href="index.html">
-                <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
-                <span style="margin-right: 10px;">Revamp Auto </span>
-            </a>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/REVAMP-removebg-preview.png" alt="AutoShine Logo" style="height: 40px;">
+                        <span style="margin-right: 10px;">Revamp Auto</span>
+                    </a>
                     <p class="footer-text">منتجات احترافية للعناية بالسيارات لعشاق السيارات والمحترفين على حد سواء. احصل على نتائج صالات العرض في منزلك بتركيباتنا الاحترافية.</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -394,7 +406,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="mb-0">&copy; 2023 Revamp Auto . جميع الحقوق محفوظة.</p>
+                <p class="mb-0">&copy; 2023 Revamp Auto. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -405,235 +417,7 @@
     <script src="js/auth.js"></script>
     <script src="js/api.js"></script>
     <script src="js/cart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            auth.checkAuthState();
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-            
-            // Show loading state
-            const mainContent = document.getElementById('main-content');
-            mainContent.innerHTML = `
-                <div class="text-center py-5">
-                    <div class="loading-spinner"></div>
-                    <p class="mt-3">جاري تحميل سلة التسوق...</p>
-                </div>
-            `;
-            
-            try {
-                // Fetch cart
-                const cartData = await cart.getCart();
-                
-                // Render cart
-                renderCart(cartData);
-            } catch (error) {
-                auth.showToast(error.message, 'danger');
-                mainContent.innerHTML = `
-                    <div class="alert alert-danger">
-                        ${error.message}
-                    </div>
-                `;
-            }
-        });
-        
-        function renderCart(cart) {
-            const mainContent = document.getElementById('main-content');
-            
-            if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
-                mainContent.innerHTML = `
-                    <div class="empty-cart animate-up">
-                        <div class="empty-cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h2 class="mb-3">سلة التسوق فارغة</h2>
-                        <p class="mb-4">يبدو أنك لم تقم بإضافة أي عناصر إلى سلة التسوق الخاصة بك بعد.</p>
-                        <a href="index.html" class="btn btn-primary btn-lg">مواصلة التسوق</a>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = `
-                <div class="row animate-up">
-                    <div class="col-lg-8">
-                        <div class="cart-header">
-                            <h2><i class="fas fa-shopping-cart me-2"></i>سلة التسوق الخاصة بك</h2>
-                            <p class="text-muted">لديك ${cart.cartItems.length} عنصر(عناصر) في سلة التسوق</p>
-                        </div>
-                        
-                        <div class="card summary-card mb-4">
-                            <div class="card-body">
-            `;
-            
-            cart.cartItems.forEach(item => {
-                const price = item.discountedPrice || item.price;
-                const total = price * item.quantity;
-                
-                html += `
-                    <div class="cart-item">
-                        <div class="row align-items-center">
-                            <div class="col-md-2">
-                                <img src="${item.productImageUrl || 'https://via.placeholder.com/300'}" 
-                                     class="cart-item-img img-fluid" 
-                                     alt="${item.productName}">
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="mb-1">${item.productName}</h5>
-                                <small class="text-muted">${item.productId}</small>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group quantity-control">
-                                    <button class="btn btn-outline-secondary minus-btn" 
-                                            type="button" 
-                                            data-item-id="${item.id}">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="number" 
-                                           class="form-control text-center quantity-input" 
-                                           value="${item.quantity}" 
-                                           min="1"
-                                           data-item-id="${item.id}">
-                                    <button class="btn btn-outline-secondary plus-btn" 
-                                            type="button" 
-                                            data-item-id="${item.id}">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-2 text-md-end">
-                                <h5 class="mb-0">$${total.toFixed(2)}</h5>
-                                <small class="text-muted">$${price.toFixed(2)} لكل قطعة</small>
-                            </div>
-                            <div class="col-md-1 text-end">
-                                <button class="btn btn-sm btn-outline-danger remove-item-btn" 
-                                        data-item-id="${item.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between mb-5">
-                            <a href="product.html" class="btn btn-outline-primary">
-                                <i class="fas fa-arrow-left me-2"></i>مواصلة التسوق
-                            </a>
-                            <button class="btn btn-outline-danger" id="clear-cart-btn">
-                                <i class="fas fa-trash me-2"></i>إفراغ السلة
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4">
-                        <div class="card summary-card sticky-top" style="top: 100px;">
-                            <div class="card-header">
-                                <h4 class="mb-0">ملخص الطلب</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <span>المجموع الفرعي (${cart.cartItems.length} عناصر)</span>
-                                    <span>$${cart.totalAmount.toFixed(2)}</span>
-                                </div>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <span>الشحن</span>
-                                    <span>مجاني</span>
-                                </div>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <span>الضريبة</span>
-                                    <span>$0.00</span>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between mb-4 fw-bold fs-5">
-                                    <span>الإجمالي</span>
-                                    <span>$${cart.totalAmount.toFixed(2)}</span>
-                                </div>
-                                <button class="btn btn-primary btn-lg w-100" id="checkout-btn">
-                                    <i class="fas fa-credit-card me-2"></i>إتمام الشراء
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            mainContent.innerHTML = html;
-            
-            // Add event listeners
-            document.querySelectorAll('.minus-btn').forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    const itemId = e.target.closest('button').getAttribute('data-item-id');
-                    const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
-                    let value = parseInt(input.value);
-                    if (value > 1) {
-                        input.value = value - 1;
-                        await cart.updateCartItem(itemId, input.value);
-                        location.reload(); // Refresh to update totals
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.plus-btn').forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    const itemId = e.target.closest('button').getAttribute('data-item-id');
-                    const input = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
-                    let value = parseInt(input.value);
-                    input.value = value + 1;
-                    await cart.updateCartItem(itemId, input.value);
-                    location.reload(); // Refresh to update totals
-                });
-            });
-            
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                input.addEventListener('change', async (e) => {
-                    const itemId = e.target.getAttribute('data-item-id');
-                    let value = parseInt(e.target.value);
-                    if (value < 1) value = 1;
-                    e.target.value = value;
-                    await cart.updateCartItem(itemId, value);
-                    location.reload(); // Refresh to update totals
-                });
-            });
-            
-            document.querySelectorAll('.remove-item-btn').forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    const itemId = e.target.getAttribute('data-item-id');
-                    try {
-                        await cart.removeFromCart(itemId);
-                        auth.showToast('تمت إزالة العنصر من السلة', 'success');
-                        location.reload();
-                    } catch (error) {
-                        auth.showToast(error.message, 'danger');
-                    }
-                });
-            });
-            
-            document.getElementById('clear-cart-btn').addEventListener('click', async () => {
-                try {
-                    await cart.clearCart();
-                    auth.showToast('تم إفراغ السلة', 'success');
-                    location.reload();
-                } catch (error) {
-                    auth.showToast(error.message, 'danger');
-                }
-            });
-            
-            document.getElementById('checkout-btn').addEventListener('click', () => {
-                window.location.href = 'checkout.html';
-            });
-        }
-    </script>
+    <script src="js/badges.js"></script>
+    <script src="js/cart-page.js"></script>
 </body>
 </html>

@@ -120,7 +120,19 @@
         .navbar-toggler:focus {
             box-shadow: none;
         }
-        
+        /* Badge styles */
+/* Badge styles */
+.nav-link .badge {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.4rem;
+    min-width: 1.25rem;
+    line-height: 1;
+}
+
+/* Remove the RTL adjustment since we're handling it inline */
+[dir="rtl"] .nav-link .position-absolute {
+    left: auto !important;
+}
         /* Hero Slider */
         .hero-slider {
             position: relative;
@@ -725,16 +737,25 @@
                         <i class="fas fa-box-open"></i> المنتجات
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">
-                        <i class="fas fa-shopping-cart"></i> عربة التسوق
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="wishlist.html">
-                        <i class="fas fa-heart"></i> المفضلة
-                    </a>
-                </li>
+                <!-- In your navbar (replace the existing cart and wishlist links) -->
+<li class="nav-item">
+    <a class="nav-link position-relative" href="cart.html">
+        <i class="fas fa-shopping-cart"></i> عربة التسوق
+        <span id="cart-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+              style="right: -5px;">
+            0
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link position-relative" href="wishlist.html">
+        <i class="fas fa-heart"></i> المفضلة
+        <span id="wishlist-badge" class="position-absolute top-0 translate-middle badge rounded-pill bg-danger d-none" 
+              style="right: -5px;">
+            0
+        </span>
+    </a>
+</li>
                 <li class="nav-item">
                     <a class="nav-link" href="orders.html">
                         <i class="fas fa-box"></i> الطلبات
@@ -1000,122 +1021,182 @@
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>
     <script src="js/products.js"></script>
+    <!-- Add this near your other JS files -->
+<script src="js/badges.js"></script>
     <script>
-        // Hero Slider Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check auth state
-            auth.checkAuthState();
+       document.addEventListener('DOMContentLoaded', function() {
+    // Check auth state
+    auth.checkAuthState();
+    
+    // Hero slider functionality
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        let newIndex = (currentSlide + 1) % slides.length;
+        showSlide(newIndex);
+    }
+    
+    // Auto-advance slides every 5 seconds
+    setInterval(nextSlide, 5000);
+    
+    // Click on dots to navigate
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Load first 4 products with wishlist status
+    loadFeaturedProducts();
+});
+
+async function loadFeaturedProducts() {
+    try {
+        // Fetch products and wishlist items in parallel
+        const [products, wishlistItems] = await Promise.all([
+            api.get('/Products'),
+            auth.getAuthToken() ? api.get('/Wishlist') : Promise.resolve({ wishlistItems: [] })
+        ]);
+        
+        const container = document.getElementById('products-container');
+        container.innerHTML = '';
+        
+        // Create a Set of product IDs in wishlist for quick lookup
+        const wishlistProductIds = new Set(wishlistItems.wishlistItems.map(item => item.productId));
+        
+        // Get first 4 products
+        const featuredProducts = products.slice(0, 4);
+        
+        featuredProducts.forEach((product, index) => {
+            const priceHtml = product.discountedPrice 
+                ? `<span class="original-price">$${product.price.toFixed(2)}</span>
+                   <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
+                : `$${product.price.toFixed(2)}`;
             
-            // Hero slider functionality
-            const slides = document.querySelectorAll('.hero-slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            let currentSlide = 0;
+            const isInWishlist = wishlistProductIds.has(product.id);
             
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
+            const productCard = document.createElement('div');
+            productCard.className = `col-md-6 col-lg-3 animate-up`;
+            productCard.style.animationDelay = `${0.1 * index}s`;
+            productCard.innerHTML = `
+                <div class="product-card" onclick="window.location.href='product-details.html?id=${product.id}'" style="cursor: pointer;">
+                    <div class="product-img-container">
+                        <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
+                             alt="${product.name}" 
+                             class="product-img">
+                        ${product.discountedPrice ? '<span class="product-badge">خصم</span>' : ''}
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-category">${product.categoryName}</p>
+                        <div class="product-price">${priceHtml}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-add-to-cart" data-product-id="${product.id}" onclick="event.stopPropagation()">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                            <button class="btn btn-add-to-wishlist ${isInWishlist ? 'text-danger' : ''}" 
+                                    data-product-id="${product.id}" 
+                                    data-in-wishlist="${isInWishlist}"
+                                    onclick="event.stopPropagation()">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(productCard);
+            
+            // Add event listeners with login check
+            productCard.querySelector('.btn-add-to-cart').addEventListener('click', async (e) => {
+                e.stopPropagation();
                 
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
-            }
-            
-            function nextSlide() {
-                let newIndex = (currentSlide + 1) % slides.length;
-                showSlide(newIndex);
-            }
-            
-            // Auto-advance slides every 5 seconds
-            setInterval(nextSlide, 5000);
-            
-            // Click on dots to navigate
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+                // Check if user is logged in
+                if (!auth.getAuthToken()) {
+                    auth.showLoginAlert('cart');
+                    return;
+                }
+                
+                try {
+                    await cart.addToCart(product.id, 1);
+                    auth.showToast('تم إضافة المنتج إلى السلة', 'success');
+                    
+                    // Update cart badge
+                    if (window.badgeManager) {
+                        await badgeManager.updateCartBadge();
+                    }
+                } catch (error) {
+                    auth.showToast(error.message, 'danger');
                 }
             });
             
-            // Load first 4 products
-            loadFeaturedProducts();
+            const wishlistBtn = productCard.querySelector('.btn-add-to-wishlist');
+            wishlistBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                
+                // Check if user is logged in
+                if (!auth.getAuthToken()) {
+                    auth.showLoginAlert('wishlist');
+                    return;
+                }
+                
+                try {
+                    if (wishlistBtn.dataset.inWishlist === 'true') {
+                        // Find the wishlist item ID to remove
+                        const wishlistItem = wishlistItems.wishlistItems.find(item => item.productId === product.id);
+                        if (wishlistItem) {
+                            await wishlist.removeFromWishlist(wishlistItem.id);
+                            wishlistBtn.classList.remove('text-danger');
+                            wishlistBtn.dataset.inWishlist = 'false';
+                            auth.showToast('تمت إزالة المنتج من المفضلة', 'success');
+                            
+                            // Update wishlist badge
+                            if (window.badgeManager) {
+                                await badgeManager.updateWishlistBadge();
+                            }
+                        }
+                    } else {
+                        await wishlist.addToWishlist(product.id);
+                        wishlistBtn.classList.add('text-danger');
+                        wishlistBtn.dataset.inWishlist = 'true';
+                        auth.showToast('تمت إضافة المنتج إلى المفضلة', 'success');
+                        
+                        // Update wishlist badge
+                        if (window.badgeManager) {
+                            await badgeManager.updateWishlistBadge();
+                        }
+                    }
+                } catch (error) {
+                    auth.showToast(error.message, 'danger');
+                }
+            });
         });
-        
-        async function loadFeaturedProducts() {
-            try {
-                const products = await api.get('/Products');
-                const featuredProducts = products.slice(0, 4); // Get first 4 products
-                
-                const container = document.getElementById('products-container');
-                container.innerHTML = '';
-                
-                featuredProducts.forEach((product, index) => {
-                    const priceHtml = product.discountedPrice 
-                        ? `<span class="original-price">$${product.price.toFixed(2)}</span>
-                           <span class="discounted-price">$${product.discountedPrice.toFixed(2)}</span>`
-                        : `$${product.price.toFixed(2)}`;
-                    
-                    const productCard = document.createElement('div');
-                    productCard.className = `col-md-6 col-lg-3 animate-up`;
-                    productCard.style.animationDelay = `${0.1 * index}s`;
-                    productCard.innerHTML = `
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="${product.imageUrl || 'https://via.placeholder.com/300'}" 
-                                     alt="${product.name}" 
-                                     class="product-img">
-                                ${product.discountedPrice ? '<span class="product-badge">خصم</span>' : ''}
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-title">${product.name}</h3>
-                                <p class="product-category">${product.categoryName}</p>
-                                <div class="product-price">${priceHtml}</div>
-                                <div class="product-actions">
-                                    <button class="btn btn-add-to-cart" data-product-id="${product.id}">
-                                        <i class="fas fa-cart-plus"></i> أضف للسلة
-                                    </button>
-                                    <button class="btn btn-add-to-wishlist" data-product-id="${product.id}">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    container.appendChild(productCard);
-                    
-                    // Add event listeners
-                    productCard.querySelector('.btn-add-to-cart').addEventListener('click', async () => {
-                        try {
-                            await cart.addToCart(product.id, 1);
-                            auth.showToast('تمت إضافة المنتج إلى السلة', 'success');
-                        } catch (error) {
-                            auth.showToast(error.message, 'danger');
-                        }
-                    });
-                    
-                    productCard.querySelector('.btn-add-to-wishlist').addEventListener('click', async () => {
-                        try {
-                            await wishlist.addToWishlist(product.id);
-                            auth.showToast('تمت إضافة المنتج إلى المفضلة', 'success');
-                        } catch (error) {
-                            auth.showToast(error.message, 'danger');
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error('Error loading featured products:', error);
-                auth.showToast('فشل تحميل المنتجات', 'danger');
-            }
-        }
+    } catch (error) {
+        console.error('Error loading featured products:', error);
+        auth.showToast('فشل تحميل المنتجات', 'danger');
+    }
+}
     </script>
 </body>
 </html>
